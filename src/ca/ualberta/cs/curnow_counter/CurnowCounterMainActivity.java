@@ -1,11 +1,14 @@
 package ca.ualberta.cs.curnow_counter;
 
+import ca.ualberta.cs.lonelytwitter.Gson;
+import ca.ualberta.cs.lonelytwitter.NormalTweetModel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import com.google.gson.Gson;
 
 public class CurnowCounterMainActivity extends Activity {
 
@@ -13,6 +16,8 @@ public class CurnowCounterMainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);
+		
+		final CounterListModel counterList = new CounterListModel();
 		
 		 
 	}
@@ -35,5 +40,21 @@ public class CurnowCounterMainActivity extends Activity {
 	}
 
 
+	private String serialization( CounterModel model) {
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(model);
+		return json;
+	}
+	
+	
+	
+	private CounterModel deserialization(String text) {
+		
+		Gson gson = new Gson();
+		CounterModel new_model = gson.fromJson(text, CounterModel.class);
+		return new_model;
+	}
+	
 	
 }

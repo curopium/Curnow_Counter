@@ -3,6 +3,7 @@ package ca.ualberta.cs.curnow_counter;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 
 public class Curnow_CounterActivity extends Activity {
 
@@ -10,6 +11,8 @@ public class Curnow_CounterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);
+		
+		 
 	}
 
 	@Override
@@ -18,5 +21,6 @@ public class Curnow_CounterActivity extends Activity {
 		getMenuInflater().inflate(R.menu.curnow__counter, menu);
 		return true;
 	}
+	
 
 }

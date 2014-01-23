@@ -4,5 +4,6 @@
     <string name="app_name">Curnow_Counter</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_counter">CounterActivity</string>
 
 </resources>

@@ -11,8 +11,16 @@ public class CounterModel {
 	private Date timestamp;
 	private TextView text;
 	private int button_value;
+	private String name;
 	
-	
+	public CounterModel() {
+		super();
+		button_value = 0;
+		
+		timestamp = new Date();
+	}
+
+
 	public Button getButton() {
 		return button;
 	}
@@ -54,10 +62,6 @@ public class CounterModel {
 
 
 
-	
-	public CounterModel() {
-		
-	}
 	
 	
 	

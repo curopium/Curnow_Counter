@@ -1,7 +1,6 @@
 package ca.ualberta.cs.curnow_counter;
 
-import ca.ualberta.cs.lonelytwitter.Gson;
-import ca.ualberta.cs.lonelytwitter.NormalTweetModel;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import com.google.gson.Gson;
 
 public class CurnowCounterMainActivity extends Activity {
 
+	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,7 +35,9 @@ public class CurnowCounterMainActivity extends Activity {
 		CounterModel new_counter = new CounterModel();
 		Intent intent = new Intent(this, CounterActivity.class);
 	
-		//intent.putExtra("Todo, new_counter);
+		String counterString = serialization(new_counter);
+		
+		intent.putExtra(EXTRA_COUNTER, counterString);
 		
 		startActivity(intent);
 	}

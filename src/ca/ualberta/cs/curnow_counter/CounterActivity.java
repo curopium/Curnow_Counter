@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class CounterActivity extends Activity {
 
+	static CounterModel counter = new CounterModel();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -22,7 +24,7 @@ public class CounterActivity extends Activity {
 		//Gets the passed counter through the intent and deserializes it
 		Intent intent = getIntent();
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
-		CounterModel counter = deserialization(counterString);
+		counter = deserialization(counterString);
 		
 		//sets button title from counter and sets it in button
 		Button buttonVars = (Button)findViewById(R.id.buttonCounter);
@@ -41,9 +43,7 @@ public class CounterActivity extends Activity {
 	
 	
 	public void goback(View view) {
-		
 		//TODO add saving
-		
 		finish();
 		
 	}
@@ -63,6 +63,11 @@ public class CounterActivity extends Activity {
 		return new_model;
 	}
 	
+	public void incCounter(View view){
+		counter.setButtonValue(counter.getButtonValue() + 1);
+		updateCounter(counter);
+		//TODO save
+	}
 	
 
 }

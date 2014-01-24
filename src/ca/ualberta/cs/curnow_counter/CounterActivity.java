@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CounterActivity extends Activity {
 
@@ -24,10 +25,11 @@ public class CounterActivity extends Activity {
 		CounterModel counter = deserialization(counterString);
 		
 		//sets button title from data from passed counter
+		Button buttonVars = (Button)findViewById(R.id.buttonCounter);
+		buttonVars.setText(counter.getName());
 		
-		Button buttonTitleField = (Button)findViewById(R.id.buttonCounter);
-		buttonTitleField.setText(counter.getName());
-		
+		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
+		buttonVars.setText(0);
 	}
 
 	@Override

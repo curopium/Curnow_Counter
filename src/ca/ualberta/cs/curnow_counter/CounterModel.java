@@ -11,28 +11,28 @@ public class CounterModel {
 
 	
 	private Date timestamp;
-	private int button_value;
+	private int buttonValue;
 	private String name;
 	
 	public CounterModel() {
 		super();
-		button_value = 0;
+		buttonValue = 0;
 	}
 	
 	public CounterModel(String title) {
 		super();
-		button_value = 0;
+		buttonValue = 0;
 		name = title;
 	}
 
 	public CounterModel(int button_value) {
 		super();
-		this.button_value = button_value;
+		this.buttonValue = button_value;
 	}
 
 	public CounterModel(int button_value, String name) {
 		super();
-		this.button_value = button_value;
+		this.buttonValue = button_value;
 		this.name = name;
 	}
 
@@ -44,14 +44,15 @@ public class CounterModel {
 		this.timestamp = timestamp;
 	}
 
-	public int getButton_value() {
-		return button_value;
+
+	public int getButtonValue() {
+		return buttonValue;
 	}
 
-	public void setButton_value(int button_value) {
-		this.button_value = button_value;
+	public void setButtonValue(int buttonValue) {
+		this.buttonValue = buttonValue;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

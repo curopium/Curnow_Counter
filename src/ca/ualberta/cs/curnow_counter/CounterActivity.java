@@ -24,12 +24,12 @@ public class CounterActivity extends Activity {
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
 		CounterModel counter = deserialization(counterString);
 		
-		//sets button title from data from passed counter
+		//sets button title from counter and sets it in button
 		Button buttonVars = (Button)findViewById(R.id.buttonCounter);
 		buttonVars.setText(counter.getName());
 		
-		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
-		buttonVars.setText(0);
+		updateCounter(counter);
+		
 	}
 
 	@Override
@@ -48,13 +48,21 @@ public class CounterActivity extends Activity {
 		
 	}
 	
-	
-	
-	private CounterModel deserialization(String text) {
+	//Gets the button value from counter and moves it to view
+	private void updateCounter (CounterModel counter) {
+		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
+		int counterButtonValue = counter.getButtonValue();
+		buttonValue.setText(String.valueOf(counterButtonValue));
 		
+	}
+	
+	//takes a Json string and turns it into a counter
+	private CounterModel deserialization(String text) {
 		Gson gson = new Gson();
 		CounterModel new_model = gson.fromJson(text, CounterModel.class);
 		return new_model;
 	}
+	
+	
 
 }

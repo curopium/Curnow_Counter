@@ -17,11 +17,12 @@ public class CounterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counter);
 		
+		//Gets the passed counter through the intent and deserializes it
 		Intent intent = getIntent();
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
-		
 		CounterModel counter = deserialization(counterString);
 		
+		//sets button title from data from passed counter
 		EditText buttonTitleField = (EditText)findViewById(R.id.buttonTitle);
 		buttonTitleField.setText(counter.getName());
 		

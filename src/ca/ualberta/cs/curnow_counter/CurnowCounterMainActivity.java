@@ -20,6 +20,7 @@ public class CurnowCounterMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);
 		
+		//CounterListModel saves all the counter data
 		final CounterListModel counterList = new CounterListModel();
 		
 		 
@@ -33,20 +34,20 @@ public class CurnowCounterMainActivity extends Activity {
 	}
 	
 
+	//activates when you push the create button
 	public void createCounter(View view) {
 		
+		//Gets the string from CreateButton EditText
 		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
 		String message = buttonTitle.getText().toString();
 
-		CounterModel new_counter = new CounterModel(message);
-		
-		Intent intent = new Intent(this, CounterActivity.class);
-	
+		//Creates a new counter (and serializes it) with the message from CreatButton
+		//then passes it through a newly created intent
+		CounterModel new_counter = new CounterModel(message);		
+		Intent intent = new Intent(this, CounterActivity.class);	
 		String counterString = serialization(new_counter);
-		
-		
-		
 		intent.putExtra(EXTRA_COUNTER, counterString);
+		
 		
 		startActivity(intent);
 	}

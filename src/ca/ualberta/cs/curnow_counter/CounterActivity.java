@@ -7,11 +7,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class CounterActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counter);
 		
@@ -19,6 +21,9 @@ public class CounterActivity extends Activity {
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
 		
 		CounterModel counter = deserialization(counterString);
+		
+		EditText buttonTitleField = (EditText)findViewById(R.id.buttonTitle);
+		buttonTitleField.setText(counter.getName());
 		
 	}
 
@@ -37,6 +42,8 @@ public class CounterActivity extends Activity {
 		finish();
 		
 	}
+	
+	
 	
 	private CounterModel deserialization(String text) {
 		

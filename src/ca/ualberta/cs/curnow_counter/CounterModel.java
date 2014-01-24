@@ -2,54 +2,47 @@ package ca.ualberta.cs.curnow_counter;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 import android.widget.Button;
 import android.widget.TextView;
 
 public class CounterModel {
 
-	private Button button;
+	//private Button button;
 	private Date timestamp;
-	private TextView text;
+	//private TextView text;
 	private int button_value;
 	private String name;
 	
-	public CounterModel() {
-		super();
+	public CounterModel(String title) {
+		
+		
 		button_value = 0;
 		
-		timestamp = new Date();
+		
+		name = title;
+	}
+
+	public CounterModel() {
+		
+		button_value = 0;
+		
 	}
 
 
-	public Button getButton() {
-		return button;
-	}
+	
 
 
-	public void setButton(Button button) {
-		this.button = button;
-	}
 
 
 	public Date getTimestamp() {
 		return timestamp;
 	}
 
-
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-
-
-	public TextView getText() {
-		return text;
-	}
-
-
-	public void setText(TextView text) {
-		this.text = text;
-	}
-
 
 	public int getButton_value() {
 		return button_value;
@@ -60,6 +53,15 @@ public class CounterModel {
 		this.button_value = button_value;
 	}
 
+
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
 	

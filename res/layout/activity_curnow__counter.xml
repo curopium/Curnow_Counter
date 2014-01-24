@@ -9,19 +9,19 @@
     tools:context=".CurnowCounterMainActivity" >
     
     <Button
-        android:id="@+id/Create_Button"
+        android:id="@+id/CreateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Counter"
         android:onClick= "createCounter" />
     
-    <EditText android:id="@+id/Create_Button_EditText"
-       
+    <EditText 
+        android:id="@+id/CreateButtonEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/Create_Button"
-        android:layout_alignBaseline="@+id/Create_Button"
-        android:layout_alignBottom="@+id/Create_Button"
+        android:layout_toRightOf="@+id/CreateButton"
+        android:layout_alignBaseline="@+id/CreateButton"
+        android:layout_alignBottom="@+id/CreateButton"
         android:hint="Counter name" />
 
 

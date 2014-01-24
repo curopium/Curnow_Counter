@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 import com.google.gson.Gson;
 
 public class CurnowCounterMainActivity extends Activity {
@@ -32,10 +34,17 @@ public class CurnowCounterMainActivity extends Activity {
 	
 
 	public void createCounter(View view) {
-		CounterModel new_counter = new CounterModel();
+		
+		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
+		String message = buttonTitle.getText().toString();
+
+		CounterModel new_counter = new CounterModel(message);
+		
 		Intent intent = new Intent(this, CounterActivity.class);
 	
 		String counterString = serialization(new_counter);
+		
+		
 		
 		intent.putExtra(EXTRA_COUNTER, counterString);
 		
@@ -43,7 +52,7 @@ public class CurnowCounterMainActivity extends Activity {
 	}
 
 
-	private String serialization( CounterModel model) {
+	public String serialization( CounterModel model) {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(model);

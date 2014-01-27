@@ -53,8 +53,11 @@ public class CounterActivity extends Activity {
 	}
 	
 	
-	private void goback(View view) {
-		//TODO add saving
+	public void goback(View view) {
+			
+		String counter_serial = debugserialization(counter);
+		saveToFile(counter_serial);
+		
 		finish();
 		
 	}
@@ -78,28 +81,14 @@ public class CounterActivity extends Activity {
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
 		//TODO save
+		
+		String counter_serial = debugserialization(counter);
+		saveToFile(counter_serial);
 	}
 	
-	private CounterModel loadFromFile() {
-        CounterModel loadedCounter = new CounterModel();
-        try {
-        		 	
-                FileInputStream fis = openFileInput(FILENAME);
-                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                String line = in.readLine();          
-                loadedCounter = deserialization(line);            
-                
-        } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-        } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-        }
-        		return loadedCounter;
-		}
 	
 	private void saveToFile(String text){
+		
 		try {
 			
 			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -116,6 +105,20 @@ public class CounterActivity extends Activity {
     
 	}
 	
+	public String serialization( CounterModel model) {
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(model);
+		return json;
+	}
 	
+	public String debugserialization( CounterModel model) {
+		
+		//model.setButtonValue(999);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(model);
+		return json;
+	}
 
 }

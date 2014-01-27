@@ -1,9 +1,19 @@
 package ca.ualberta.cs.curnow_counter;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
+
 import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -14,6 +24,7 @@ import android.widget.TextView;
 public class CounterActivity extends Activity {
 
 	static CounterModel counter = new CounterModel();
+	private static final String FILENAME = "file.sav";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +53,7 @@ public class CounterActivity extends Activity {
 	}
 	
 	
-	public void goback(View view) {
+	private void goback(View view) {
 		//TODO add saving
 		finish();
 		
@@ -63,11 +74,48 @@ public class CounterActivity extends Activity {
 		return new_model;
 	}
 	
-	public void incCounter(View view){
+	private void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
 		//TODO save
 	}
+	
+	private CounterModel loadFromFile() {
+        CounterModel loadedCounter = new CounterModel();
+        try {
+        		 	
+                FileInputStream fis = openFileInput(FILENAME);
+                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+                String line = in.readLine();          
+                loadedCounter = deserialization(line);            
+                
+        } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+        } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+        }
+        		return loadedCounter;
+		}
+	
+	private void saveToFile(String text){
+		try {
+			
+			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+			fos.write(new String(text).getBytes());
+			fos.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+	}
+	
 	
 
 }

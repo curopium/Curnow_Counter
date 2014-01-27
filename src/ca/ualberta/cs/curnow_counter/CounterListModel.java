@@ -1,8 +1,10 @@
 package ca.ualberta.cs.curnow_counter;
 
+import java.util.ArrayList;
+
 public class CounterListModel {
 	
-	private CounterModel[] array;
+	private static ArrayList<CounterModel> counterList;
 
 	
 	
@@ -10,13 +12,18 @@ public class CounterListModel {
 		super();
 	}
 
-	public CounterModel[] getArray() {
-		return array;
+
+
+	public static ArrayList<CounterModel> getCounterList() {
+		return counterList;
 	}
 
-	public void setArray(CounterModel[] array) {
-		this.array = array;
+
+
+	public static void setCounterList(ArrayList<CounterModel> counterList) {
+		CounterListModel.counterList = counterList;
 	}
+
 	
 	
 

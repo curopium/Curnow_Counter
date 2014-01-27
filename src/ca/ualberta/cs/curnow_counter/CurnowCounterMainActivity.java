@@ -21,7 +21,7 @@ public class CurnowCounterMainActivity extends Activity {
 
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME = "file.sav";
-	private static CounterListModel counterList = new CounterListModel();
+	//private static CounterListModel counterList = new CounterListModel();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

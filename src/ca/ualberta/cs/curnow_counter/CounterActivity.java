@@ -74,7 +74,7 @@ public class CounterActivity extends Activity {
 		return new_model;
 	}
 	
-	private void incCounter(View view){
+	public void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
 		//TODO save

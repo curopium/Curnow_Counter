@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class CounterModel {
 
 	
-	private Date timestamp;
+	private Date timestamp = new Date();
 	private int buttonValue;
 	private String name;
 	

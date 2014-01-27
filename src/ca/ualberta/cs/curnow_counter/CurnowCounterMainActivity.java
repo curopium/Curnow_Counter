@@ -21,7 +21,8 @@ public class CurnowCounterMainActivity extends Activity {
 
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME = "file.sav";
-	//private static CounterListModel counterList = new CounterListModel();
+	static CounterController counterController = new CounterController();
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class CurnowCounterMainActivity extends Activity {
 		setContentView(R.layout.activity_curnow__counter);
 		
 		//CounterListModel saves all the counter data
-		
+		//final static CounterController counterController = new CounterController();
 		 
 	}
 
@@ -46,8 +47,15 @@ public class CurnowCounterMainActivity extends Activity {
 		super.onResume();
 		
 		CounterModel loadedCounter = loadFromFile();
-		//counterList.
 		
+		//debug
+		System.out.println(loadedCounter.getName());
+		System.out.println(loadedCounter.getButtonValue());
+		System.out.println(loadedCounter.getTimestamp());
+		
+		
+		//CounterModel debugCounter = new CounterModel();
+		//counterController.addCounter(debugCounter);
 		
 	}
 	

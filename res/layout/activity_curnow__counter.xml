@@ -24,7 +24,12 @@
         android:layout_alignBottom="@+id/CreateButton"
         android:hint="Counter name" />
 
-
+	<ListView
+	    android:id="@+id/counterList"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	    
+	</ListView>
 
     
 </RelativeLayout>

@@ -49,13 +49,11 @@ public class CurnowCounterMainActivity extends Activity {
 		CounterModel loadedCounter = loadFromFile();
 		
 		//debug
-		System.out.println(loadedCounter.getName());
-		System.out.println(loadedCounter.getButtonValue());
-		System.out.println(loadedCounter.getTimestamp());
+		//System.out.println(loadedCounter.getName());
+		//System.out.println(loadedCounter.getButtonValue());
+		//System.out.println(loadedCounter.getTimestamp());
 		
-		
-		//CounterModel debugCounter = new CounterModel();
-		//counterController.addCounter(debugCounter);
+		counterController.addCounter(loadedCounter);
 		
 	}
 	

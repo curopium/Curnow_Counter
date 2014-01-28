@@ -10,6 +10,7 @@ public class CounterListModel {
 	
 	public CounterListModel() {
 		super();
+		counterList = new ArrayList<CounterModel>();
 	}
 
 

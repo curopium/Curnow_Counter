@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 
@@ -22,6 +23,7 @@ public class CurnowCounterMainActivity extends Activity {
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME = "file.sav";
 	static CounterController counterController = new CounterController();
+	private ListView counterList; 
 	
 	
 	@Override
@@ -31,6 +33,8 @@ public class CurnowCounterMainActivity extends Activity {
 		
 		//CounterListModel saves all the counter data
 		//final static CounterController counterController = new CounterController();
+		
+		counterList = (ListView) findViewById(R.id.counterList);
 		 
 	}
 

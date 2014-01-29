@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,7 +27,7 @@ public class CurnowCounterMainActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	static CounterController counterController = new CounterController();
 	private ListView counterList; 
-	
+	private static CounterMapModel counterMap = new CounterMapModel();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,9 @@ public class CurnowCounterMainActivity extends Activity {
             
             
             
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, getCounterNames(counters));
+            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterMap.getKeys());
             
-            counterList.setAdapter(adapter);
+            //counterList.setAdapter(adapter);
     }
 
 	//activates when you push the create button
@@ -128,11 +129,17 @@ public class CurnowCounterMainActivity extends Activity {
                 String line = in.readLine();  
                 
                 CounterModel counter = deserialization(line);    
-                line = ("Counter name: " + counter.getName() + " Counter value: " + counter.getButtonValue());
+                //line = ("Counter name: " + counter.getName() + " Counter value: " + counter.getButtonValue());
                 
                 while(line != null) {
                 	counters.add(counter);
                 	line = in.readLine();
+                	
+                	//Add the counter to the CounterMap
+                	//Log.d("Thomas:", );
+                	//fix hheeeeeerrrrreeee
+                	CounterMapModel.add(counter.getName(), counter);
+                	
                 }
                 
         } catch (FileNotFoundException e) {

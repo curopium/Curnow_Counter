@@ -18,6 +18,13 @@ public class CounterMapModel {
 		CounterMapModel.counterMap = counterMap;
 	}
 
+	public static void add (String string, CounterModel counter){
+		counterMap.put(string, counter);
+	}
 	
+	public static String[] getKeys(){
+		return (counterMap.keySet()).toArray(new String[0]);
+		
+	}
 
 }

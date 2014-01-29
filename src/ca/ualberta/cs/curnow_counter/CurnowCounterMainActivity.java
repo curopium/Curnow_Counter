@@ -6,12 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -50,17 +52,31 @@ public class CurnowCounterMainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
-		CounterModel loadedCounter = loadFromFile();
+		//CounterModel loadedCounter = loadFromFile();
 		
 		//debug
 		//System.out.println(loadedCounter.getName());
 		//System.out.println(loadedCounter.getButtonValue());
 		//System.out.println(loadedCounter.getTimestamp());
 		
-		counterController.addCounter(loadedCounter);
+		//counterController.addCounter(loadedCounter);
 		
 	}
 	
+
+    @Override
+    protected void onStart() {
+            
+            
+            
+            // TODO Auto-generated method stub
+            super.onStart();
+            
+            //Adapter code adapted from lonely Twitter
+            String[] counters = loadFromFile();
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counters);
+            counterList.setAdapter(adapter);
+    }
 
 	//activates when you push the create button
 	public void createCounter(View view) {
@@ -97,14 +113,22 @@ public class CurnowCounterMainActivity extends Activity {
 		return new_model;
 	}
 	
-	private CounterModel loadFromFile() {
-        CounterModel loadedCounter = new CounterModel();
+	//LoadingFromFile code adapted from lonely Twitter
+	private String[] loadFromFile() {
+        ArrayList<String> counters = new ArrayList<String>();
         try {
         		 	
                 FileInputStream fis = openFileInput(FILENAME);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                String line = in.readLine();          
-                loadedCounter = deserialization(line);            
+                String line = in.readLine();  
+                
+                CounterModel counter = deserialization(line);    
+                line = counter.getName();
+                
+                while(line != null) {
+                	counters.add(line);
+                	line = in.readLine();
+                }
                 
         } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
@@ -113,7 +137,7 @@ public class CurnowCounterMainActivity extends Activity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        		return loadedCounter;
+        		return counters.toArray(new String[counters.size()]);
 		}
 	
 	

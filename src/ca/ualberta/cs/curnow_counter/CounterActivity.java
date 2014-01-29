@@ -86,7 +86,7 @@ public class CounterActivity extends Activity {
 		saveToFile(counter_serial);
 	}
 	
-	
+	//SaveingToFile code adapted from lonely Twitter
 	private void saveToFile(String text){
 		
 		try {

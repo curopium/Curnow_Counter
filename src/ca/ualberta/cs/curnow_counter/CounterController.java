@@ -1,24 +1,24 @@
 package ca.ualberta.cs.curnow_counter;
 
 
-import java.util.Map;
+import java.util.ArrayList;
+
 
 public class CounterController implements CounterControllerInterface {
 
-	private CounterMapModel counterMapModel;
+	private CounterListModel counterMapModel;
 	
 	public CounterController() {
 		super();
-		counterMapModel = new CounterMapModel();
+		counterMapModel = new CounterListModel();
 	}
 	
 	public void addCounter(CounterModel counter) {
 		
 		//System.out.println("hello");
 		
-		Map<String, CounterModel> map = counterMapModel.getCounterMap();
-		
-        map.put(counter.getName(),counter);
+		ArrayList<CounterModel> list = CounterListModel.getCounterList();
+        list.add(new CounterModel());
         
 	}
 	

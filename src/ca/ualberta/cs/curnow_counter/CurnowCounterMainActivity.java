@@ -27,7 +27,7 @@ public class CurnowCounterMainActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	static CounterController counterController = new CounterController();
 	private ListView counterList; 
-	private static CounterMapModel counterMap = new CounterMapModel();
+	private static CounterListModel counterMap = new CounterListModel();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class CurnowCounterMainActivity extends Activity {
                 	//Add the counter to the CounterMap
                 	//Log.d("Thomas:", );
                 	//fix hheeeeeerrrrreeee
-                	CounterMapModel.add(counter.getName(), counter);
+                	//CounterListModel.add(counter);
                 	
                 }
                 

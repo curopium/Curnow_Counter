@@ -82,6 +82,7 @@ public class CounterActivity extends Activity {
 		updateCounter(counter);
 		//TODO save
 		
+		
 		String counter_serial = serialization(counter);
 		saveToFile(counter_serial);
 	}

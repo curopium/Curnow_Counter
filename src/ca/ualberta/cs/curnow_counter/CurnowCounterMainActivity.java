@@ -26,8 +26,8 @@ public class CurnowCounterMainActivity extends Activity {
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME = "file.sav";
 	static CounterController counterController = new CounterController();
-	private ListView counterList; 
-	private static CounterListModel counterMap = new CounterListModel();
+	private ListView counterListView; 
+	private static CounterListModel counterList = new CounterListModel();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class CurnowCounterMainActivity extends Activity {
 		//CounterListModel saves all the counter data
 		//final static CounterController counterController = new CounterController();
 		
-		counterList = (ListView) findViewById(R.id.counterList);
+		counterListView = (ListView) findViewById(R.id.counterList);
 		 
 	}
 
@@ -76,7 +76,7 @@ public class CurnowCounterMainActivity extends Activity {
             //Adapter code adapted from lonely Twitter
             CounterModel[] counters = loadFromFile();
             
-            
+            System.out.println(counterList.getNameList());
             
             //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterMap.getKeys());
             
@@ -136,9 +136,7 @@ public class CurnowCounterMainActivity extends Activity {
                 	line = in.readLine();
                 	
                 	//Add the counter to the CounterMap
-                	//Log.d("Thomas:", );
-                	//fix hheeeeeerrrrreeee
-                	//CounterListModel.add(counter);
+                	CounterListModel.add(counter);
                 	
                 }
                 

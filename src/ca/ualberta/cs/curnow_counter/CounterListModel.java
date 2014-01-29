@@ -22,6 +22,22 @@ public class CounterListModel {
 		CounterListModel.counterList = counterList;
 	}
 
+	public static void add(CounterModel model){
+		counterList.add(model);
+	}
 	
+	public static int getSize(){
+		return counterList.size();
+	}
 
+	public static ArrayList<String> getNameList(){
+		ArrayList<String> nameList = new ArrayList<String>();
+		
+		for (CounterModel counter :counterList) {
+			nameList.add(counter.getName());
+		}
+		
+		
+		return nameList;
+	}
 }

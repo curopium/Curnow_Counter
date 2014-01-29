@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 
@@ -80,11 +81,11 @@ public class CurnowCounterMainActivity extends Activity {
             
             //counterList.clearList();
             loadListFromFile();
-            //loadFromFile();
+            loadFromFile();
             
             saveListToFile();
             
-            //System.out.println(counterList.getNameList());
+            System.out.println(counterList.getNameList());
             
             //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterMap.getKeys());
             
@@ -170,7 +171,7 @@ public class CurnowCounterMainActivity extends Activity {
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
                 String line = in.readLine();   
                 
-                //counterList = deserializationList(line);    
+                counterList = counterList.getdeserialization(line);    
            
                 /*
                 while(line != null) {
@@ -193,13 +194,6 @@ public class CurnowCounterMainActivity extends Activity {
         		//return counters.toArray(new CounterModel[counters.size()]);
 		}
 	
-	
-	private CounterListModel deserializationList(String text) {
-		
-		Gson gson = new Gson();
-		CounterListModel new_model = gson.fromJson(text, CounterListModel.class);
-		return new_model;
-	}
 	
 	public String serialization( CounterModel model) {
 		

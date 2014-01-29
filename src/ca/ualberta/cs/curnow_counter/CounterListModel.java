@@ -3,6 +3,10 @@ package ca.ualberta.cs.curnow_counter;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
 
 
 public class CounterListModel {
@@ -23,11 +27,35 @@ public class CounterListModel {
 	}
 
 	public static void add(CounterModel model){
-		counterList.add(model);
+		if(model != null) {
+			counterList.add(model);
+		}
 	}
 	
 	public static int getSize(){
 		return counterList.size();
+	}
+	
+
+	public String getserialization() {
+		
+		Gson gson = new Gson();
+		
+		List<CounterModel> counters = new ArrayList<CounterModel>();
+		
+		for (CounterModel counter :counterList) {
+			counters.add(counter);
+		}
+		
+		String json = gson.toJson(counters);
+		
+		System.out.println(json);
+		
+		return json;
+	}
+	
+	public static void clearList(){
+		counterList.clear();
 	}
 
 	public static ArrayList<String> getNameList(){

@@ -82,9 +82,20 @@ public class CounterActivity extends Activity {
 		updateCounter(counter);
 		//TODO save
 		
-		String counter_serial = debugserialization(counter);
+		String counter_serial = serialization(counter);
 		saveToFile(counter_serial);
 	}
+	
+	public void resetCounter(View view){
+		counter.setButtonValue(0);
+		updateCounter(counter);
+		//TODO save
+		
+		String counter_serial = serialization(counter);
+		saveToFile(counter_serial);
+	}
+	
+	
 	
 	//SaveingToFile code adapted from lonely Twitter
 	private void saveToFile(String text){

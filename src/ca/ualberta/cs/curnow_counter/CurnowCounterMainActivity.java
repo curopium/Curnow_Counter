@@ -73,8 +73,12 @@ public class CurnowCounterMainActivity extends Activity {
             super.onStart();
             
             //Adapter code adapted from lonely Twitter
-            String[] counters = loadFromFile();
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counters);
+            CounterModel[] counters = loadFromFile();
+            
+            
+            
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, getCounterNames(counters));
+            
             counterList.setAdapter(adapter);
     }
 
@@ -95,6 +99,7 @@ public class CurnowCounterMainActivity extends Activity {
 		
 		startActivity(intent);
 	}
+	
 
 
 	public String serialization( CounterModel model) {
@@ -114,8 +119,8 @@ public class CurnowCounterMainActivity extends Activity {
 	}
 	
 	//LoadingFromFile code adapted from lonely Twitter
-	private String[] loadFromFile() {
-        ArrayList<String> counters = new ArrayList<String>();
+	private CounterModel[] loadFromFile() {
+        ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
         try {
         		 	
                 FileInputStream fis = openFileInput(FILENAME);
@@ -123,10 +128,10 @@ public class CurnowCounterMainActivity extends Activity {
                 String line = in.readLine();  
                 
                 CounterModel counter = deserialization(line);    
-                line = counter.getName();
+                line = ("Counter name: " + counter.getName() + " Counter value: " + counter.getButtonValue());
                 
                 while(line != null) {
-                	counters.add(line);
+                	counters.add(counter);
                 	line = in.readLine();
                 }
                 
@@ -137,8 +142,21 @@ public class CurnowCounterMainActivity extends Activity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        		return counters.toArray(new String[counters.size()]);
+        		return counters.toArray(new CounterModel[counters.size()]);
 		}
+	
+	private ArrayList<String> getCounterNames(CounterModel[] models){
+		
+		
+		 ArrayList<String> nameList = new ArrayList();
+		
+		for(CounterModel counters : models){
+			nameList.add(counters.getName());
+		}
+		
+		
+		return nameList;
+	}
 	
 	
 }

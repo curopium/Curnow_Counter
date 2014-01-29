@@ -37,4 +37,13 @@
         android:text="Button Value"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="resetCounter"
+        android:text="Reset" />
+
 </RelativeLayout>

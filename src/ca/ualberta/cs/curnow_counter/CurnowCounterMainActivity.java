@@ -14,6 +14,7 @@ import org.json.JSONArray;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.LauncherActivity.ListItem;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -97,8 +98,20 @@ public class CurnowCounterMainActivity extends Activity {
         	counterListView.setOnItemClickListener(new OnItemClickListener() {    
         	    @Override
         	    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        	        // your code is here on item click
-        	    	System.out.println("You clicked: " + id);
+        	        
+        	    	//System.out.println("You clicked: " + (counterListView.getItemAtPosition(position)));
+        	    	
+        	    	CounterModel foundCounter = new CounterModel();
+        	    	//looks for the counter you clicked
+        	    	foundCounter = counterList.getCounterFromName((counterListView.getItemAtPosition(position)).toString());
+        	    	
+        	    	//creates new intent with button
+        	    	Intent intent = new Intent(CurnowCounterMainActivity.this, CounterActivity.class);	
+        			String counterString = serialization(foundCounter);
+        			intent.putExtra(EXTRA_COUNTER, counterString);
+        			
+        			startActivity(intent);
+        	    	
         	    }
         	});
     }

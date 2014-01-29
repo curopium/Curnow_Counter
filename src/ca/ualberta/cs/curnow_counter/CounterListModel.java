@@ -5,6 +5,7 @@ package ca.ualberta.cs.curnow_counter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -87,5 +88,15 @@ public class CounterListModel {
 		
 		
 		return nameList;
+	}
+	
+	public static CounterModel getCounterFromName(String name){
+		
+		for (CounterModel counter :counterList) {
+			if(name == counter.getName()){
+				return counter;
+			}
+		}
+		return null;
 	}
 }

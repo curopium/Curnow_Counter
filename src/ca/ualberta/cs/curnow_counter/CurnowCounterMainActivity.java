@@ -19,6 +19,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +46,8 @@ public class CurnowCounterMainActivity extends Activity {
 		//final static CounterController counterController = new CounterController();
 		
 		counterListView = (ListView) findViewById(R.id.counterList);
-		 
+		
+		
 	}
 
 	@Override
@@ -85,12 +88,22 @@ public class CurnowCounterMainActivity extends Activity {
             
             saveListToFile();
             
-            System.out.println(counterList.getNameList());
+            //System.out.println(counterList.getNameList());
             
-            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterMap.getKeys());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             
-            //counterList.setAdapter(adapter);
+            counterListView.setAdapter(adapter);
+            
+        	counterListView.setOnItemClickListener(new OnItemClickListener() {    
+        	    @Override
+        	    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        	        // your code is here on item click
+        	    	System.out.println("You clicked: " + id);
+        	    }
+        	});
     }
+    
+    
 
 	//activates when you push the create button
 	public void createCounter(View view) {
@@ -209,18 +222,6 @@ public class CurnowCounterMainActivity extends Activity {
 		return new_model;
 	}
 	
-	private ArrayList<String> getCounterNames(CounterModel[] models){
-		
-		
-		 ArrayList<String> nameList = new ArrayList();
-		
-		for(CounterModel counters : models){
-			nameList.add(counters.getName());
-		}
-		
-		
-		return nameList;
-	}
 	
-	
+
 }

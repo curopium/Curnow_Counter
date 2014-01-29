@@ -61,7 +61,7 @@ public class CounterListModel {
 		Gson gson = new Gson();
 		//http://kodejava.org/how-do-i-convert-collections-into-json/
 		
-		Type type = new TypeToken<List<CounterModel>>(){}.getType();
+		Type type = new TypeToken<ArrayList<CounterModel>>(){}.getType();
 		List<CounterModel> new_list = gson.fromJson(text, type);
 		
 		CounterListModel new_array = new CounterListModel();

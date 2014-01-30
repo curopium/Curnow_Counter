@@ -31,8 +31,6 @@ public class CounterListModel {
 
 	public static void add(CounterModel model){
 		
-
-		
 		//checks to see if name is in the list, it if is, copy the atrributes over
 		if(model != null) {
 			

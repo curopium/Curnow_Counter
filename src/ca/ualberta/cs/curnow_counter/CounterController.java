@@ -15,8 +15,6 @@ public class CounterController implements CounterControllerInterface {
 	
 	public void addCounter(CounterModel counter) {
 		
-		//System.out.println("hello");
-		
 		ArrayList<CounterModel> list = CounterListModel.getCounterList();
         list.add(new CounterModel());
         

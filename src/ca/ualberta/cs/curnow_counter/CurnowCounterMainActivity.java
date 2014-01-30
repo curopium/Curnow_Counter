@@ -43,9 +43,6 @@ public class CurnowCounterMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);
 		
-		//CounterListModel saves all the counter data
-		//final static CounterController counterController = new CounterController();
-		
 		counterListView = (ListView) findViewById(R.id.counterList);
 		
 		
@@ -63,15 +60,6 @@ public class CurnowCounterMainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
-		//CounterModel loadedCounter = loadFromFile();
-		
-		//debug
-		//System.out.println(loadedCounter.getName());
-		//System.out.println(loadedCounter.getButtonValue());
-		//System.out.println(loadedCounter.getTimestamp());
-		
-		//counterController.addCounter(loadedCounter);
-		
 	}
 	
 
@@ -79,15 +67,11 @@ public class CurnowCounterMainActivity extends Activity {
     protected void onStart() {
     
             super.onStart();
-            
-            //clearCounters();
-            
+                      
             loadListFromFile();
             loadFromFile();
             saveListToFile();
-            
-            //System.out.println(counterList.getNameList());
-            
+                       
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             
             counterListView.setAdapter(adapter);
@@ -126,12 +110,10 @@ public class CurnowCounterMainActivity extends Activity {
 		Intent intent = new Intent(this, CounterActivity.class);	
 		String counterString = serialization(new_counter);
 		intent.putExtra(EXTRA_COUNTER, counterString);
-		
-		
+
 		startActivity(intent);
 	}
 
-	
 	//LoadingFromFile code adapted from lonely Twitter
 	private void loadFromFile() {
         ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
@@ -165,10 +147,7 @@ public class CurnowCounterMainActivity extends Activity {
 		
 		try {
 			
-			String text = counterList.getserialization();
-			
-			
-			
+			String text = counterList.getserialization();	
 			FileOutputStream fos = openFileOutput(FILENAME2, Context.MODE_PRIVATE);
 			fos.write(new String(text).getBytes());
 			fos.close();
@@ -193,17 +172,6 @@ public class CurnowCounterMainActivity extends Activity {
                 String line = in.readLine();   
                 
                 counterList = counterList.getdeserialization(line);    
-           
-                /*
-                while(line != null) {
-                	counters.add(counter);
-                	line = in.readLine();
-                	
-                	//Add the counter to the CounterMap
-                	//CounterListModel.add(counter);
-                	
-                }
-                */
                 
         } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
@@ -236,9 +204,6 @@ public class CurnowCounterMainActivity extends Activity {
 		try {
 			
 			String text = counterList.getserialization();
-			
-			
-			
 			FileOutputStream fos = openFileOutput(FILENAME2, Context.MODE_PRIVATE);
 			fos.write(new String(text).getBytes());
 			fos.close();
@@ -256,6 +221,4 @@ public class CurnowCounterMainActivity extends Activity {
         counterListView.setAdapter(adapter);
 	}
 	
-	
-
 }

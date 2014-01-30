@@ -40,17 +40,15 @@ public class CounterListModel {
 			
 					System.out.println("delete");
 					System.out.println(model.getName().toString());
+					
 				if((model.getName()).toString().equals("DeleteMe")){
 					
 					counterList.remove(counter);
 					System.out.println("Truedelete");
 					return;
-					
 				}
 				
 				if((model.getName()).equals(counter.getName())){
-					
-					
 					
 					counter.setButtonValue(model.getButtonValue());
 					counter.setTimestamp(model.getTimestamp());
@@ -78,8 +76,6 @@ public class CounterListModel {
 		
 		String json = gson.toJson(counters);
 		
-		//System.out.println(json);
-		
 		return json;
 	}
 	
@@ -106,6 +102,7 @@ public class CounterListModel {
 	}
 
 	public static ArrayList<String> getNameList(){
+		
 		ArrayList<String> nameList = new ArrayList<String>();
 		
 		for (CounterModel counter :counterList) {

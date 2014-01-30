@@ -32,7 +32,7 @@ public class CounterActivity extends Activity {
 		//Gets the passed counter through the intent and deserializes it
 		Intent intent = getIntent();
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
-		counter = deserialization(counterString);
+		counter = counter.deserialization(counterString);
 		//sets button title from counter and sets it in button
 		Button buttonVars = (Button)findViewById(R.id.buttonCounter);
 		buttonVars.setText(counter.getName());
@@ -46,12 +46,6 @@ public class CounterActivity extends Activity {
 		return true;
 	}
 	
-	public void goback(View view) {
-		String counter_serial = counter.serialization();
-		saveToFile(counter_serial);
-		finish();
-	}
-	
 	//Gets the button value from counter and moves it to view
 	private void updateCounter (CounterModel counter) {
 		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
@@ -59,13 +53,14 @@ public class CounterActivity extends Activity {
 		buttonValue.setText(String.valueOf(counterButtonValue));
 	}
 	
-	//takes a Json string and turns it into a counter
-	private CounterModel deserialization(String text) {
-		Gson gson = new Gson();
-		CounterModel new_model = gson.fromJson(text, CounterModel.class);
-		return new_model;
+	//called by a button in the activity_couner.xml
+	public void goback(View view) {
+		String counter_serial = counter.serialization();
+		saveToFile(counter_serial);
+		finish();
 	}
 	
+	//called by a button in the activity_couner.xml
 	public void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
@@ -73,6 +68,7 @@ public class CounterActivity extends Activity {
 		saveToFile(counter_serial);
 	}
 	
+	//called by a button in the activity_couner.xml
 	public void resetCounter(View view){
 		counter.setButtonValue(0);
 		updateCounter(counter);
@@ -80,6 +76,7 @@ public class CounterActivity extends Activity {
 		saveToFile(counter_serial);
 	}
 	
+	//called by a button in the activity_couner.xml
 	public void deleteCounter(View view){
 		counter.setName("DeleteMe");
 		String counter_serial = counter.serialization();

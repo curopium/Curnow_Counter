@@ -70,4 +70,5 @@ public class CounterModel {
 		CounterModel new_model = gson.fromJson(text, CounterModel.class);
 		return new_model;
 	}
+	
 }

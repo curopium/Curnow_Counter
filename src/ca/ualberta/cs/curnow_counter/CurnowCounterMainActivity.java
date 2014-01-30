@@ -34,7 +34,7 @@ public class CurnowCounterMainActivity extends Activity {
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME = "file.sav";
 	private static final String FILENAME2 = "file2.sav";
-	static CounterController counterController = new CounterController();
+	private static CounterController counterController = new CounterController();
 	private ListView counterListView; 
 	private static CounterListModel counterList = new CounterListModel();
 	
@@ -78,19 +78,7 @@ public class CurnowCounterMainActivity extends Activity {
         	});
     }
     
-	//activates when you push the create button
-	public void createCounter(View view) {
-		//Gets the string from CreateButton EditText
-		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
-		String message = buttonTitle.getText().toString();
-		//Creates a new counter (and serializes it) with the message from CreatButton
-		//then passes it through a newly created intent
-		CounterModel new_counter = new CounterModel(message);		
-		Intent intent = new Intent(this, CounterActivity.class);	
-		String counterString = new_counter.serialization();
-		intent.putExtra(EXTRA_COUNTER, counterString);
-		startActivity(intent);
-	}
+
 	//LoadingFromFile code adapted from lonely Twitter
 	private void loadFromFile() {
         ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
@@ -140,6 +128,22 @@ public class CurnowCounterMainActivity extends Activity {
         }
 		}
 	
+	//activates when you push the create button
+    //called by a button in the activity_curnow__counter.xml
+	public void createCounter(View view) {
+		//Gets the string from CreateButton EditText
+		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
+		String message = buttonTitle.getText().toString();
+		//Creates a new counter (and serializes it) with the message from CreatButton
+		//then passes it through a newly created intent
+		CounterModel new_counter = new CounterModel(message);		
+		Intent intent = new Intent(this, CounterActivity.class);	
+		String counterString = new_counter.serialization();
+		intent.putExtra(EXTRA_COUNTER, counterString);
+		startActivity(intent);
+	}
+	
+	//called by a button in the activity_curnow__counter.xml
 	public void clearCounters(View view){
 		counterList.clearList();
 		try {

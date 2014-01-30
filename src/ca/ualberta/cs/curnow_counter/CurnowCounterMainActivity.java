@@ -77,16 +77,13 @@ public class CurnowCounterMainActivity extends Activity {
 
     @Override
     protected void onStart() {
-            
-            
-            
-            // TODO Auto-generated method stub
+    
             super.onStart();
             
-            //counterList.clearList();
+            //clearCounters();
+            
             loadListFromFile();
             loadFromFile();
-            
             saveListToFile();
             
             //System.out.println(counterList.getNameList());
@@ -116,8 +113,6 @@ public class CurnowCounterMainActivity extends Activity {
         	});
     }
     
-    
-
 	//activates when you push the create button
 	public void createCounter(View view) {
 		
@@ -233,6 +228,32 @@ public class CurnowCounterMainActivity extends Activity {
 		Gson gson = new Gson();
 		CounterModel new_model = gson.fromJson(text, CounterModel.class);
 		return new_model;
+	}
+	
+	public void clearCounters(View view){
+		counterList.clearList();
+		
+		try {
+			
+			String text = counterList.getserialization();
+			
+			
+			
+			FileOutputStream fos = openFileOutput(FILENAME2, Context.MODE_PRIVATE);
+			fos.write(new String(text).getBytes());
+			fos.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
+        
+        counterListView.setAdapter(adapter);
 	}
 	
 	

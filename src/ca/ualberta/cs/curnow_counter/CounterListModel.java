@@ -30,9 +30,25 @@ public class CounterListModel {
 	}
 
 	public static void add(CounterModel model){
+		
+		//checks to see if name is in the list, it if is, copy the atrributes over
 		if(model != null) {
-			counterList.add(model);
-		}
+			for (CounterModel counter :counterList) {
+			
+				//System.out.println(model.getName());
+				//System.out.println(counter.getName());
+				
+				if((model.getName()).equals(counter.getName())){
+					
+					//System.out.println("You replaces: ");
+					
+					counter.setButtonValue(model.getButtonValue());
+					counter.setTimestamp(model.getTimestamp());
+					return;
+				}
+			}
+				counterList.add(model);
+			}
 	}
 	
 	public static int getSize(){

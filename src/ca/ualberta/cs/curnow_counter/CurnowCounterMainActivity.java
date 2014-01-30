@@ -71,7 +71,7 @@ public class CurnowCounterMainActivity extends Activity {
         	    	foundCounter = counterList.getCounterFromName((counterListView.getItemAtPosition(position)).toString());
         	    	//creates new intent with button
         	    	Intent intent = new Intent(CurnowCounterMainActivity.this, CounterActivity.class);	
-        			String counterString = serialization(foundCounter);
+        			String counterString = foundCounter.serialization();
         			intent.putExtra(EXTRA_COUNTER, counterString);
         			startActivity(intent);
         	    }
@@ -87,7 +87,7 @@ public class CurnowCounterMainActivity extends Activity {
 		//then passes it through a newly created intent
 		CounterModel new_counter = new CounterModel(message);		
 		Intent intent = new Intent(this, CounterActivity.class);	
-		String counterString = serialization(new_counter);
+		String counterString = new_counter.serialization();
 		intent.putExtra(EXTRA_COUNTER, counterString);
 		startActivity(intent);
 	}
@@ -97,8 +97,9 @@ public class CurnowCounterMainActivity extends Activity {
         try { 	
                 FileInputStream fis = openFileInput(FILENAME);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                String line = in.readLine();    
-                CounterModel counter = deserialization(line);    
+                String line = in.readLine();  
+                CounterModel counter = new CounterModel();
+                counter = counter.deserialization(line);    
                 while(line != null) {
                 	counters.add(counter);
                 	line = in.readLine();
@@ -138,18 +139,6 @@ public class CurnowCounterMainActivity extends Activity {
                 e.printStackTrace();
         }
 		}
-	
-	public String serialization( CounterModel model) {
-		Gson gson = new Gson();
-		String json = gson.toJson(model);
-		return json;
-	}
-	
-	private CounterModel deserialization(String text) {
-		Gson gson = new Gson();
-		CounterModel new_model = gson.fromJson(text, CounterModel.class);
-		return new_model;
-	}
 	
 	public void clearCounters(View view){
 		counterList.clearList();

@@ -57,4 +57,17 @@ public class CounterModel {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public String serialization() {
+		Gson gson = new Gson();
+		String json = gson.toJson(this);
+		return json;
+	}
+	
+	public CounterModel deserialization(String text) {
+		Gson gson = new Gson();
+		CounterModel new_model = gson.fromJson(text, CounterModel.class);
+		return new_model;
+	}
 }

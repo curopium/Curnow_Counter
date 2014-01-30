@@ -47,7 +47,7 @@ public class CounterActivity extends Activity {
 	}
 	
 	public void goback(View view) {
-		String counter_serial = serialization(counter);
+		String counter_serial = counter.serialization();
 		saveToFile(counter_serial);
 		finish();
 	}
@@ -69,20 +69,20 @@ public class CounterActivity extends Activity {
 	public void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
-		String counter_serial = serialization(counter);
+		String counter_serial = counter.serialization();
 		saveToFile(counter_serial);
 	}
 	
 	public void resetCounter(View view){
 		counter.setButtonValue(0);
 		updateCounter(counter);
-		String counter_serial = serialization(counter);
+		String counter_serial = counter.serialization();
 		saveToFile(counter_serial);
 	}
 	
 	public void deleteCounter(View view){
 		counter.setName("DeleteMe");
-		String counter_serial = serialization(counter);
+		String counter_serial = counter.serialization();
 		saveToFile(counter_serial);
 		finish();
 	}
@@ -100,9 +100,4 @@ public class CounterActivity extends Activity {
 		}
 	}
 	
-	public String serialization( CounterModel model) {
-		Gson gson = new Gson();
-		String json = gson.toJson(model);
-		return json;
-	}
 }

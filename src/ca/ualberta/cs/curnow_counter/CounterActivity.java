@@ -22,27 +22,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CounterActivity extends Activity {
-
 	static CounterModel counter = new CounterModel();
 	private static final String FILENAME = "file.sav";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counter);
-		
 		//Gets the passed counter through the intent and deserializes it
 		Intent intent = getIntent();
 		String counterString = intent.getStringExtra(CurnowCounterMainActivity.EXTRA_COUNTER);
 		counter = deserialization(counterString);
-		
 		//sets button title from counter and sets it in button
 		Button buttonVars = (Button)findViewById(R.id.buttonCounter);
 		buttonVars.setText(counter.getName());
-		
 		updateCounter(counter);
-		
 	}
 
 	@Override
@@ -63,7 +57,6 @@ public class CounterActivity extends Activity {
 		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
 		int counterButtonValue = counter.getButtonValue();
 		buttonValue.setText(String.valueOf(counterButtonValue));
-		
 	}
 	
 	//takes a Json string and turns it into a counter
@@ -96,28 +89,20 @@ public class CounterActivity extends Activity {
 
 	//SaveingToFile code adapted from lonely Twitter
 	private void saveToFile(String text){
-		
 		try {
-			
 			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
 			fos.write(new String(text).getBytes());
 			fos.close();
-			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    
 	}
 	
 	public String serialization( CounterModel model) {
-		
 		Gson gson = new Gson();
 		String json = gson.toJson(model);
 		return json;
 	}
-
 }

@@ -1,7 +1,5 @@
 package ca.ualberta.cs.curnow_counter;
 
-
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +8,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 
 public class CounterListModel {
 	
@@ -30,26 +27,17 @@ public class CounterListModel {
 	}
 
 	public static void add(CounterModel model){
-		
-		//checks to see if name is in the list, it if is, copy the atrributes over
+		//checks to see if name is in the list, it if is, copy the values over
 		if(model != null) {
-			
-			//deletion check
-			
 			for (CounterModel counter :counterList) {
-			
 					System.out.println("delete");
 					System.out.println(model.getName().toString());
-					
 				if((model.getName()).toString().equals("DeleteMe")){
-					
 					counterList.remove(counter);
 					System.out.println("Truedelete");
 					return;
 				}
-				
 				if((model.getName()).equals(counter.getName())){
-					
 					counter.setButtonValue(model.getButtonValue());
 					counter.setTimestamp(model.getTimestamp());
 					return;
@@ -65,36 +53,26 @@ public class CounterListModel {
 	
 
 	public String getserialization() {
-		
 		Gson gson = new Gson();
-		
 		List<CounterModel> counters = new ArrayList<CounterModel>();
-		
 		for (CounterModel counter :counterList) {
 			counters.add(counter);
 		}
-		
 		String json = gson.toJson(counters);
-		
 		return json;
 	}
 	
 	public CounterListModel getdeserialization(String text) {
-			
 		Gson gson = new Gson();
 		//http://kodejava.org/how-do-i-convert-collections-into-json/
 		
 		Type type = new TypeToken<ArrayList<CounterModel>>(){}.getType();
 		List<CounterModel> new_list = gson.fromJson(text, type);
-		
 		CounterListModel new_array = new CounterListModel();
-		
 		for (CounterModel counter :new_list) {
 			new_array.add(counter);
 		}
-		
 		return new_array;
-		
 	}
 	
 	public static void clearList(){
@@ -102,19 +80,14 @@ public class CounterListModel {
 	}
 
 	public static ArrayList<String> getNameList(){
-		
 		ArrayList<String> nameList = new ArrayList<String>();
-		
 		for (CounterModel counter :counterList) {
 			nameList.add(counter.getName());
 		}
-		
-		
 		return nameList;
 	}
 	
 	public static CounterModel getCounterFromName(String name){
-		
 		for (CounterModel counter :counterList) {
 			if(name == counter.getName()){
 				return counter;

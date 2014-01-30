@@ -8,11 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CounterModel {
-
 	private Date timestamp = new Date();
 	private int buttonValue;
 	private String name;
-	
 	public CounterModel() {
 		super();
 		buttonValue = 0;
@@ -59,6 +57,4 @@ public class CounterModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 }

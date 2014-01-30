@@ -96,6 +96,14 @@ public class CounterActivity extends Activity {
 		saveToFile(counter_serial);
 	}
 	
+	public void deleteCounter(View view){
+		
+		//System.out.println("delete");
+		counter.setName("DeleteMe");
+		String counter_serial = debugserialization(counter);
+		saveToFile(counter_serial);
+		finish();
+	}
 	
 	
 	//SaveingToFile code adapted from lonely Twitter

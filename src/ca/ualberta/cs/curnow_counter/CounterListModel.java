@@ -31,16 +31,28 @@ public class CounterListModel {
 
 	public static void add(CounterModel model){
 		
+
+		
 		//checks to see if name is in the list, it if is, copy the atrributes over
 		if(model != null) {
+			
+			//deletion check
+			
 			for (CounterModel counter :counterList) {
 			
-				//System.out.println(model.getName());
-				//System.out.println(counter.getName());
+					System.out.println("delete");
+					System.out.println(model.getName().toString());
+				if((model.getName()).toString().equals("DeleteMe")){
+					
+					counterList.remove(counter);
+					System.out.println("Truedelete");
+					return;
+					
+				}
 				
 				if((model.getName()).equals(counter.getName())){
 					
-					//System.out.println("You replaces: ");
+					
 					
 					counter.setButtonValue(model.getButtonValue());
 					counter.setTimestamp(model.getTimestamp());

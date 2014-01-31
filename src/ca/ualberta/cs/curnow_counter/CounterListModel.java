@@ -1,10 +1,18 @@
 package ca.ualberta.cs.curnow_counter;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 public class CounterListModel {
 	
 	private static ArrayList<CounterModel> counterList;
+	private static final String FILENAME2 = "file2.sav";
 
 	public CounterListModel() {
          super();
@@ -51,7 +60,6 @@ public class CounterListModel {
 		return counterList.size();
 	}
 	
-
 	public String getserialization() {
 		Gson gson = new Gson();
 		List<CounterModel> counters = new ArrayList<CounterModel>();
@@ -95,4 +103,19 @@ public class CounterListModel {
 		}
 		return null;
 	}
+	
+	public void saveListToFile(Context ctx ){
+		try {
+			String text = this.getserialization();	
+			FileOutputStream fos = ctx.openFileOutput(FILENAME2, Context.MODE_PRIVATE);
+			fos.write(new String(text).getBytes());
+			fos.close();	
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
 }

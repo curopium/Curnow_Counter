@@ -59,8 +59,10 @@ public class CurnowCounterMainActivity extends Activity {
     protected void onStart() {
             super.onStart();                
             loadListFromFile();
-            loadFromFile();
-            saveListToFile();                    
+            CounterModel loadedCounter = new CounterModel();
+            loadedCounter = loadedCounter.loadFromFile(getApplicationContext());
+            counterList.add(loadedCounter);
+            counterList.saveListToFile(getApplicationContext());                    
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             counterListView.setAdapter(adapter);
         	counterListView.setOnItemClickListener(new OnItemClickListener() {    
@@ -79,40 +81,6 @@ public class CurnowCounterMainActivity extends Activity {
     }
     
 
-	//LoadingFromFile code adapted from lonely Twitter
-	private void loadFromFile() {
-        ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
-        try { 	
-                FileInputStream fis = openFileInput(FILENAME);
-                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                String line = in.readLine();  
-                CounterModel counter = new CounterModel();
-                counter = counter.deserialization(line);    
-                while(line != null) {
-                	counters.add(counter);
-                	line = in.readLine();
-                	//Add the counter to the CounterMap
-                	counterList.add(counter);
-                }       
-        } catch (FileNotFoundException e) {
-                e.printStackTrace();
-        } catch (IOException e) {
-                e.printStackTrace();
-        }
-		}
-	
-	private void saveListToFile(){
-		try {
-			String text = counterList.getserialization();	
-			FileOutputStream fos = openFileOutput(FILENAME2, Context.MODE_PRIVATE);
-			fos.write(new String(text).getBytes());
-			fos.close();	
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	//LoadingFromFile code adapted from lonely Twitter
 	private void loadListFromFile() {
         //ArrayList<CounterModel> counters = new ArrayList<CounterModel>();

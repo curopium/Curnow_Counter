@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
@@ -60,6 +61,17 @@ public class CounterListModel {
 		return counterList.size();
 	}
 	
+	public static void sort(){
+		
+		//sorts based on button value
+		Collections.sort(counterList, new Comparator<CounterModel>() {
+			@Override public int compare(CounterModel one, CounterModel two) {
+				return one.getButtonValue() - two.getButtonValue();
+			}
+		});
+		
+	}
+	
 	public String serialization() {
 		Gson gson = new Gson();
 		List<CounterModel> counters = new ArrayList<CounterModel>();
@@ -91,7 +103,8 @@ public class CounterListModel {
 			//Do not print counter to delete
 			if(!(counter.getName()).toString().equals("DeleteMe"))
 			{
-				nameList.add(counter.getName());
+				String stringLine = counter.getName() + ": " + Integer.toString(counter.getButtonValue()); 
+				nameList.add(stringLine);
 			}
 		}
 		return nameList;

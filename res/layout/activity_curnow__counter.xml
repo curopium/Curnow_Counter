@@ -24,15 +24,6 @@
         android:layout_alignBottom="@+id/CreateButton"
         android:hint="Counter name" />
 
-	<ListView
-	    android:id="@+id/counterList"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_above="@+id/restButton"
-	    android:layout_below="@+id/CreateButton" >
-	    
-	</ListView>
-
 	<Button
 	    android:id="@+id/restButton"
 	    style="?android:attr/buttonStyleSmall"
@@ -40,7 +31,17 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentBottom="true"
 	    android:layout_alignParentRight="true"
-	    android:text="Reset"
+	    android:text="Reset All"
 		android:onClick= "clearCounters" />
+
+	<ListView
+	    android:id="@+id/counterList"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/restButton"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/CreateButtonEditText" >
+
+	</ListView>
     
 </RelativeLayout>

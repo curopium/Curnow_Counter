@@ -7,6 +7,9 @@ http://developer.android.com/training/basics/firstapp/starting-activity.html
 Used as a reference to figure out how to save lists in GSON
 //http://kodejava.org/how-do-i-convert-collections-into-json/
 
+Used as a reference to figure out how to sort object lists in GSON
+http://stackoverflow.com/questions/2535124/how-to-sort-an-arraylist-of-objects-by-a-property
+
 Used as a reference to call openFileOutputin none-activity classes
 http://stackoverflow.com/questions/3625837/android-what-is-wrong-with-openfileoutput
 

@@ -64,7 +64,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/backButton"
         android:onClick="editCounter"
-        android:text="Change name" />
+        android:text="Copy" />
 
     <EditText
         android:id="@+id/editText"
@@ -73,7 +73,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/editButton"
         android:ems="10"
-        android:hint="New Counter name" >
+        android:hint="Copy's name" >
 
         <requestFocus />
     </EditText>

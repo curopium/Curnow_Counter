@@ -61,7 +61,8 @@ public class CurnowCounterMainActivity extends Activity {
             super.onStart();            
             counterList = counterList.loadListFromFile(getApplicationContext());
             counterList.add(emptyCounter.loadFromFile(getApplicationContext()));
-            counterList.saveListToFile(getApplicationContext());                    
+            counterList.saveListToFile(getApplicationContext());
+            counterList.sort();
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             counterListView.setAdapter(adapter);
         	counterListView.setOnItemClickListener(new OnItemClickListener() {    

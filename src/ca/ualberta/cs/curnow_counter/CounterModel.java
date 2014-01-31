@@ -12,8 +12,6 @@ import java.util.Date;
 import com.google.gson.Gson;
 
 import android.content.Context;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class CounterModel {
 	private final String FILENAME = "file.sav";

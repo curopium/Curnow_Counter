@@ -1,16 +1,5 @@
 package ca.ualberta.cs.curnow_counter;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Date;
-
-import com.google.gson.Gson;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +12,6 @@ import android.widget.TextView;
 
 public class CounterActivity extends Activity {
 	static private CounterModel counter = new CounterModel();
-	private final String FILENAME = "file.sav";
 	private Context context = CounterActivity.this;
 	
 	@Override

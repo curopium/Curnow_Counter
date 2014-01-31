@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -92,12 +91,12 @@ public class CounterListModel {
 		List<CounterModel> new_list = gson.fromJson(text, type);
 		CounterListModel new_array = new CounterListModel();
 		for (CounterModel counter :new_list) {
-			new_array.add(counter);
+			CounterListModel.add(counter);
 		}
 		return new_array;
 	}
 	
-	//Emptys out all the Counters
+	//Empties out all the Counters
 	public void clearList(){
 		counterList.clear();
 	}

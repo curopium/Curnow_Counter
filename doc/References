@@ -1,0 +1,13 @@
+Used as a reference for creating basic buttons:
+http://developer.android.com/training/basics/firstapp/building-ui.html
+
+Used as a reference for using intents and putExtra:
+http://developer.android.com/training/basics/firstapp/starting-activity.html
+
+Used as a reference to figure out how to save lists in GSON
+//http://kodejava.org/how-do-i-convert-collections-into-json/
+
+Used as a reference to call openFileOutputin none-activity classes
+http://stackoverflow.com/questions/3625837/android-what-is-wrong-with-openfileoutput
+
+Adapted many method ideas from the LonelyTwitter and FillerCreep In class examples

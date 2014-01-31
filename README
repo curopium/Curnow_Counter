@@ -1,1 +1,7 @@
-Need to add gson to the build path to compile
+Curnow_Counter
+==============
+
+A Counter Application that lets you save, create and 
+delete multiple counters.
+
+Note: Need to add Gson to the build path to compile

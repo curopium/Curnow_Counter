@@ -81,7 +81,6 @@ public class CounterModel {
 	}
 	
 	//SaveingToFile code adapted from lonely Twitter
-	//http://stackoverflow.com/questions/3625837/android-what-is-wrong-with-openfileoutput
 	public void saveToFile(String text, Context ctx){
 		try {
 			FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);

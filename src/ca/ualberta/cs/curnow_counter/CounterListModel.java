@@ -72,8 +72,6 @@ public class CounterListModel {
 	
 	public CounterListModel deserialization(String text) {
 		Gson gson = new Gson();
-		//http://kodejava.org/how-do-i-convert-collections-into-json/
-		
 		Type type = new TypeToken<ArrayList<CounterModel>>(){}.getType();
 		List<CounterModel> new_list = gson.fromJson(text, type);
 		CounterListModel new_array = new CounterListModel();
@@ -123,7 +121,6 @@ public class CounterListModel {
 	
 	//LoadingFromFile code adapted from lonely Twitter
 	public CounterListModel loadListFromFile(Context ctx) {
-        //ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
         try { 	
                 FileInputStream fis = ctx.openFileInput(FILENAME2);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));

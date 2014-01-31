@@ -1,6 +1,5 @@
 package ca.ualberta.cs.curnow_counter;
 
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

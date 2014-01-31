@@ -24,7 +24,7 @@ public class CurnowCounterMainActivity extends Activity {
 	public ListView counterListView; 
     static CounterListModel counterList = new CounterListModel();
 	//used to call CounterModel functions
-	private CounterModel emptyCounter = new CounterModel();
+    private CounterModel emptyCounter = new CounterModel();
 	private Context context = CurnowCounterMainActivity.this;
 	private static boolean wasCreated = false;
 	
@@ -62,8 +62,9 @@ public class CurnowCounterMainActivity extends Activity {
     //then waits for user to select a counter
     protected void onStart() {
             super.onStart();            
-            //System.out.println(counterList.getNameList());
-    		//counterList = counterList.loadListFromFile(context);
+            System.out.println(counterList.getNameList());
+    		CounterModel lastCounterList = emptyCounter.loadFromFile(context);
+    		counterList.addCounter(lastCounterList);
             counterList.sort();
             counterList.saveListToFile(context);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());

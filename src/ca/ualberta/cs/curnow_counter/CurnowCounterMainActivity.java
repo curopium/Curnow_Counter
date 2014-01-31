@@ -86,13 +86,16 @@ public class CurnowCounterMainActivity extends Activity {
 		//Gets the string from CreateButton EditText
 		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
 		String message = buttonTitle.getText().toString();
-		//Creates a new counter (and serializes it) with the message from CreatButton
-		//then passes it through a newly created intent
-		CounterModel new_counter = new CounterModel(message);		
-		Intent intent = new Intent(this, CounterActivity.class);	
-		String counterString = new_counter.serialization();
-		intent.putExtra(EXTRA_COUNTER, counterString);
-		startActivity(intent);
+		//only create button if string length is > 0
+		if(message.length() > 0) {
+			//Creates a new counter (and serializes it) with the message from CreatButton
+			//then passes it through a newly created intent
+			CounterModel new_counter = new CounterModel(message);		
+			Intent intent = new Intent(this, CounterActivity.class);	
+			String counterString = new_counter.serialization();
+			intent.putExtra(EXTRA_COUNTER, counterString);
+			startActivity(intent);
+		}
 	}
 	
 	//called by a button in the activity_curnow__counter.xml

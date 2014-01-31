@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class CounterActivity extends Activity {
 	static private CounterModel counter = new CounterModel();
 	private final String FILENAME = "file.sav";
-	
+	private Context context = CounterActivity.this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class CounterActivity extends Activity {
 	//called by a button in the activity_couner.xml
 	public void goBack(View view) {
 		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, getApplicationContext());
+		counter.saveToFile(counter_serial, context);
 		
 		finish();
 	}
@@ -70,7 +70,7 @@ public class CounterActivity extends Activity {
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
 		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, getApplicationContext());
+		counter.saveToFile(counter_serial, context);
 	}
 	
 	//called by a button in the activity_couner.xml
@@ -87,7 +87,7 @@ public class CounterActivity extends Activity {
 			
 			updateCounter(counter);
 			String counter_serial = counter.serialization();
-			counter.saveToFile(counter_serial, getApplicationContext());
+			counter.saveToFile(counter_serial, context);
 		}
 	}
 	
@@ -96,14 +96,14 @@ public class CounterActivity extends Activity {
 		counter.setButtonValue(0);
 		updateCounter(counter);
 		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, getApplicationContext());
+		counter.saveToFile(counter_serial, context);
 	}
 	
 	//called by a button in the activity_couner.xml
 	public void deleteCounter(View view){
 		counter.setName("DeleteMe");
 		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, getApplicationContext());
+		counter.saveToFile(counter_serial, context);
 		finish();
 	}
 

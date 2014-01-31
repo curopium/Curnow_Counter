@@ -103,8 +103,12 @@ public class CounterListModel {
 			//Do not print counter to delete
 			if(!(counter.getName()).toString().equals("DeleteMe"))
 			{
+				if(!(counter.getName()).toString().equals("DummyCounter"))
+				{
+			
 				String stringLine = counter.getName() + ": " + Integer.toString(counter.getButtonValue()); 
 				nameList.add(stringLine);
+				}
 			}
 		}
 		return nameList;
@@ -120,6 +124,14 @@ public class CounterListModel {
 	}
 	
 	public void saveListToFile(Context ctx ){
+		//dont save empty list
+		
+		System.out.println("Bye");
+		if (counterList.isEmpty()) {
+			  
+			return;
+		}
+		
 		try {
 			String text = this.serialization();	
 			FileOutputStream fos = ctx.openFileOutput(FILENAME2, Context.MODE_PRIVATE);

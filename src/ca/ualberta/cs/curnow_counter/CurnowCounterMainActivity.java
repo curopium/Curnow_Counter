@@ -38,12 +38,20 @@ public class CurnowCounterMainActivity extends Activity {
 	private static CounterListModel counterList = new CounterListModel();
 	//used to call CounterModel functions
 	private CounterModel emptyCounter = new CounterModel();
+	private Context context = CurnowCounterMainActivity.this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);	
-		counterListView = (ListView) findViewById(R.id.counterList);	
+		counterListView = (ListView) findViewById(R.id.counterList);
+		
+		//needs to fill list with at least one element
+		CounterModel tempCounter = new CounterModel("DummyCounter");
+		counterList.add(tempCounter);
+		counterList.saveListToFile(context);
+		
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,9 +67,9 @@ public class CurnowCounterMainActivity extends Activity {
     @Override
     protected void onStart() {
             super.onStart();            
-            counterList = counterList.loadListFromFile(getApplicationContext());
-            counterList.add(emptyCounter.loadFromFile(getApplicationContext()));
-            counterList.saveListToFile(getApplicationContext());
+            counterList = counterList.loadListFromFile(context);
+            counterList.add(emptyCounter.loadFromFile(context));
+            counterList.saveListToFile(context);
             counterList.sort();
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             counterListView.setAdapter(adapter);

@@ -54,21 +54,17 @@ public class CounterActivity extends Activity {
 	public void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
-		
-		
-		
 		String counter_serial = counter.serialization();
 		counter.saveToFile(counter_serial, context);
 	}
 	
 	//called by a button in the activity_couner.xml
 	public void editCounter(View view){
-		
 		//Gets the string from CreateButton EditText
 		EditText buttonTitle = (EditText) findViewById(R.id.editText);
 		String message = buttonTitle.getText().toString();
 		//only change name if string length is > 0
-		if(message.length() > 0) {
+		if((message.length() > 0) && (message.indexOf(":") == -1) ) {
 			//Creates a new counter (and serializes it) with the message from CreatButton
 			//then passes it through a newly created intent
 			CounterModel newCounter = new CounterModel(counter.getButtonValue(), message);

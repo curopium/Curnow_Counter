@@ -92,7 +92,7 @@ public class CurnowCounterMainActivity extends Activity {
 		EditText buttonTitle = (EditText) findViewById(R.id.CreateButtonEditText);
 		String message = buttonTitle.getText().toString();
 		//only create button if string length is > 0
-		if(message.length() > 0) {
+		if((message.length() > 0) && (message.indexOf(":") == -1) ) {
 			//Creates a new counter (and serializes it) with the message from CreatButton
 			//then passes it through a newly created intent
 			CounterModel new_counter = new CounterModel(message);		

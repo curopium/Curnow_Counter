@@ -117,5 +117,19 @@ public class CounterListModel {
 		}
 	}
 	
-
+	//LoadingFromFile code adapted from lonely Twitter
+	public CounterListModel loadListFromFile(Context ctx) {
+        //ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
+        try { 	
+                FileInputStream fis = ctx.openFileInput(FILENAME2);
+                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+                String line = in.readLine();   
+                return this.getdeserialization(line);    
+        } catch (FileNotFoundException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        	return null;
+		}
 }

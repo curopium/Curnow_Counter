@@ -37,6 +37,8 @@ public class CurnowCounterMainActivity extends Activity {
 	private static CounterController counterController = new CounterController();
 	private ListView counterListView; 
 	private static CounterListModel counterList = new CounterListModel();
+	//used to call CounterModel functions
+	private CounterModel emptyCounter = new CounterModel();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +59,9 @@ public class CurnowCounterMainActivity extends Activity {
 	}
     @Override
     protected void onStart() {
-            super.onStart();                
-            loadListFromFile();
-            CounterModel loadedCounter = new CounterModel();
-            loadedCounter = loadedCounter.loadFromFile(getApplicationContext());
-            counterList.add(loadedCounter);
+            super.onStart();            
+            counterList = counterList.loadListFromFile(getApplicationContext());
+            counterList.add(emptyCounter.loadFromFile(getApplicationContext()));
             counterList.saveListToFile(getApplicationContext());                    
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             counterListView.setAdapter(adapter);
@@ -79,23 +79,7 @@ public class CurnowCounterMainActivity extends Activity {
         	    }
         	});
     }
-    
 
-	//LoadingFromFile code adapted from lonely Twitter
-	private void loadListFromFile() {
-        //ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
-        try { 	
-                FileInputStream fis = openFileInput(FILENAME2);
-                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                String line = in.readLine();   
-                counterList = counterList.getdeserialization(line);    
-        } catch (FileNotFoundException e) {
-                e.printStackTrace();
-        } catch (IOException e) {
-                e.printStackTrace();
-        }
-		}
-	
 	//activates when you push the create button
     //called by a button in the activity_curnow__counter.xml
 	public void createCounter(View view) {

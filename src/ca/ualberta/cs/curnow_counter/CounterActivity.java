@@ -23,7 +23,8 @@ import android.widget.TextView;
 
 public class CounterActivity extends Activity {
 	static CounterModel counter = new CounterModel();
-	private static final String FILENAME = "file.sav";
+	private final String FILENAME = "file.sav";
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,8 @@ public class CounterActivity extends Activity {
 	//called by a button in the activity_couner.xml
 	public void goback(View view) {
 		String counter_serial = counter.serialization();
-		saveToFile(counter_serial);
+		counter.saveToFile(counter_serial, getApplicationContext());
+		
 		finish();
 	}
 	
@@ -65,7 +67,7 @@ public class CounterActivity extends Activity {
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
 		String counter_serial = counter.serialization();
-		saveToFile(counter_serial);
+		counter.saveToFile(counter_serial, getApplicationContext());
 	}
 	
 	//called by a button in the activity_couner.xml
@@ -73,28 +75,17 @@ public class CounterActivity extends Activity {
 		counter.setButtonValue(0);
 		updateCounter(counter);
 		String counter_serial = counter.serialization();
-		saveToFile(counter_serial);
+		counter.saveToFile(counter_serial, getApplicationContext());
 	}
 	
 	//called by a button in the activity_couner.xml
 	public void deleteCounter(View view){
 		counter.setName("DeleteMe");
 		String counter_serial = counter.serialization();
-		saveToFile(counter_serial);
+		counter.saveToFile(counter_serial, getApplicationContext());
 		finish();
 	}
 
-	//SaveingToFile code adapted from lonely Twitter
-	private void saveToFile(String text){
-		try {
-			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-			fos.write(new String(text).getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 }

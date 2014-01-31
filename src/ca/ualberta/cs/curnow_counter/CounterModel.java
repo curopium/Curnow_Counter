@@ -1,13 +1,18 @@
 package ca.ualberta.cs.curnow_counter;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import com.google.gson.Gson;
 
+import android.content.Context;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class CounterModel {
+	private final String FILENAME = "file.sav";
 	private Date timestamp = new Date();
 	private int buttonValue;
 	private String name;
@@ -71,4 +76,17 @@ public class CounterModel {
 		return new_model;
 	}
 	
+	//SaveingToFile code adapted from lonely Twitter
+	//http://stackoverflow.com/questions/3625837/android-what-is-wrong-with-openfileoutput
+	public void saveToFile(String text, Context ctx){
+		try {
+			FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+			fos.write(new String(text).getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -71,7 +71,9 @@ public class CounterActivity extends Activity {
 		if(message.length() > 0) {
 			//Creates a new counter (and serializes it) with the message from CreatButton
 			//then passes it through a newly created intent
-			counter.setName(message);	
+			CounterModel newCounter = new CounterModel(counter.getButtonValue(), message);
+			CurnowCounterMainActivity.counterList.delete(counter.getName());
+			counter = newCounter;
 			updateCounter(counter);
 			String counter_serial = counter.serialization();
 			counter.saveToFile(counter_serial, context);

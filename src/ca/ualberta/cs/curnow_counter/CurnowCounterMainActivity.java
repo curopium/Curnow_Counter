@@ -35,8 +35,7 @@ public class CurnowCounterMainActivity extends Activity {
 		setContentView(R.layout.activity_curnow__counter);	
 		counterListView = (ListView) findViewById(R.id.counterList);
 		counterList = counterList.loadListFromFile(context);
-		
-		if(!wasCreated)
+		if(!wasCreated )
 		{
 			//needs to fill list with at least one element
 			CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );

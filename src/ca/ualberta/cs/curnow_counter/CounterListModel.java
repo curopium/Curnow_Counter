@@ -33,6 +33,7 @@ public class CounterListModel {
 		return counterList;
 	}
 	
+	//removes a counter specified by CounterModel title
 	public void delete (String name) {
 		//System.out.println(name);
 		counterList.remove(this.getCounterFromName(name));

@@ -26,6 +26,9 @@ public class CounterListModel {
 	public CounterListModel() {
          super();
          counterList = new ArrayList<CounterModel>();
+         //initilizes it with an pointless counter
+         CounterModel dummyCounter = new CounterModel("DummyCounter");
+         counterList.add(dummyCounter); 
 	}
 	
 	//Returns the Arraylist

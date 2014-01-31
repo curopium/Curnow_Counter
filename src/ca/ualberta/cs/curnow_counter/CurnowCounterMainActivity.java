@@ -22,27 +22,20 @@ public class CurnowCounterMainActivity extends Activity {
 	private static final String FILENAME2 = "file2.sav";
 	//private static CounterController counterController = new CounterController();
 	public ListView counterListView; 
-    static CounterListModel counterList = new CounterListModel();
+    
 	//used to call CounterModel functions
     private CounterModel emptyCounter = new CounterModel();
 	private Context context = CurnowCounterMainActivity.this;
-	private static boolean wasCreated = false;
+	static CounterListModel counterList = new CounterListModel();
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_curnow__counter);	
+		setContentView(R.layout.activity_curnow__counter);
+
 		counterListView = (ListView) findViewById(R.id.counterList);
 		counterList = counterList.loadListFromFile(context);
-		if(!wasCreated )
-		{
-			//needs to fill list with at least one element
-			CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );
-			CounterListModel.addCounter(tempCounter);
-			counterList.saveListToFile(context);	
-			wasCreated = true;
-		}
 	}
 	
 	@Override
@@ -62,9 +55,10 @@ public class CurnowCounterMainActivity extends Activity {
     //then waits for user to select a counter
     protected void onStart() {
             super.onStart();            
-            System.out.println(counterList.getNameList());
-    		CounterModel lastCounterList = emptyCounter.loadFromFile(context);
-    		counterList.addCounter(lastCounterList);
+    		CounterModel lastCounter= emptyCounter.loadFromFile(context);
+    		if(lastCounter != null){
+    			counterList.addCounter(lastCounter);
+    		}
             counterList.sort();
             counterList.saveListToFile(context);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());

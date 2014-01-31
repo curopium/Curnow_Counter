@@ -1,39 +1,26 @@
 package ca.ualberta.cs.curnow_counter;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.LauncherActivity.ListItem;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.google.gson.Gson;
 
 public class CurnowCounterMainActivity extends Activity {
 
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
-	private static final String FILENAME = "file.sav";
 	private static final String FILENAME2 = "file2.sav";
-	private static CounterController counterController = new CounterController();
+	//private static CounterController counterController = new CounterController();
 	private ListView counterListView; 
 	private static CounterListModel counterList = new CounterListModel();
 	//used to call CounterModel functions
@@ -48,9 +35,8 @@ public class CurnowCounterMainActivity extends Activity {
 		
 		//needs to fill list with at least one element
 		CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );
-		counterList.add(tempCounter);
-		counterList.saveListToFile(context);
-			
+		CounterListModel.add(tempCounter);
+		counterList.saveListToFile(context);	
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,7 +55,7 @@ public class CurnowCounterMainActivity extends Activity {
     protected void onStart() {
             super.onStart();            
             counterList = counterList.loadListFromFile(context);
-            counterList.add(emptyCounter.loadFromFile(context));
+            CounterListModel.add(emptyCounter.loadFromFile(context));
             counterList.saveListToFile(context);
             counterList.sort();
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());

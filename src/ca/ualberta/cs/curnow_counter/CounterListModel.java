@@ -60,12 +60,12 @@ public class CounterListModel {
 	}
 	
 	//returns the number of counters
-	public static int getSize(){
+	public int getSize(){
 		return counterList.size();
 	}
 	
 	//sorts the ArrayList based upon button value (ascending)
-	public static void sort(){
+	public void sort(){
 		Collections.sort(counterList, new Comparator<CounterModel>() {
 			@Override public int compare(CounterModel one, CounterModel two) {
 				return one.getButtonValue() - two.getButtonValue();
@@ -98,12 +98,12 @@ public class CounterListModel {
 	}
 	
 	//Emptys out all the Counters
-	public static void clearList(){
+	public void clearList(){
 		counterList.clear();
 	}
 
 	//Returns an ArrayList of strings of every user-created CounterModel
-	public static ArrayList<String> getNameList(){
+	public ArrayList<String> getNameList(){
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (CounterModel counter :counterList) {
 			//Do not print counter to delete
@@ -121,7 +121,7 @@ public class CounterListModel {
 	}
 	
 	//Finds a specific CounterModel from a CounterModel's name
-	public static CounterModel getCounterFromName(String name){
+	public CounterModel getCounterFromName(String name){
 		for (CounterModel counter :counterList) {
 			if(name.equals(counter.getName())){
 				return counter;

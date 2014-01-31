@@ -69,8 +69,10 @@ public class CurnowCounterMainActivity extends Activity {
         	    @Override
         	    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {     	    	
         	    	CounterModel foundCounter = new CounterModel();
-        	    	//looks for the counter you clicked
-        	    	foundCounter = counterList.getCounterFromName((counterListView.getItemAtPosition(position)).toString());
+        	    	//looks for the counter you clicked, needs to split the string to get name
+        	    	String listItemString = (counterListView.getItemAtPosition(position)).toString();
+        	    	String[] splitString = listItemString.split(":", 2);
+        	    	foundCounter = counterList.getCounterFromName(splitString[0]);
         	    	//creates new intent with button
         	    	Intent intent = new Intent(CurnowCounterMainActivity.this, CounterActivity.class);	
         			String counterString = foundCounter.serialization();

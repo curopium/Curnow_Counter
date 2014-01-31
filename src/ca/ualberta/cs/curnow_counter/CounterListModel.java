@@ -112,7 +112,7 @@ public class CounterListModel {
 	
 	public static CounterModel getCounterFromName(String name){
 		for (CounterModel counter :counterList) {
-			if(name == counter.getName()){
+			if(name.equals(counter.getName())){
 				return counter;
 			}
 		}

@@ -47,11 +47,10 @@ public class CurnowCounterMainActivity extends Activity {
 		counterListView = (ListView) findViewById(R.id.counterList);
 		
 		//needs to fill list with at least one element
-		CounterModel tempCounter = new CounterModel("DummyCounter");
+		CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );
 		counterList.add(tempCounter);
 		counterList.saveListToFile(context);
-		
-		
+			
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +64,8 @@ public class CurnowCounterMainActivity extends Activity {
 		super.onResume();
 	}
     @Override
+    //Loads up the list from memory, adds the most recently changed counter
+    //then waits for user to select a counter
     protected void onStart() {
             super.onStart();            
             counterList = counterList.loadListFromFile(context);
@@ -108,6 +109,7 @@ public class CurnowCounterMainActivity extends Activity {
 		}
 	}
 	
+	//Clear the Counter list and all visible counters
 	//called by a button in the activity_curnow__counter.xml
 	public void clearCounters(View view){
 		counterList.clearList();

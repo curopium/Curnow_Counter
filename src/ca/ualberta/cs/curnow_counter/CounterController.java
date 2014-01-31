@@ -10,6 +10,7 @@ public class CounterController implements CounterControllerInterface {
 		counterMapModel = new CounterListModel();
 	}
 	
+	//Impliment addCounter
 	public void addCounter(CounterModel counter) {
 		ArrayList<CounterModel> list = CounterListModel.getCounterList();
         list.add(new CounterModel());

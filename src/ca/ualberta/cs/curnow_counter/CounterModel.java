@@ -20,66 +20,78 @@ public class CounterModel {
 	private Date timestamp = new Date();
 	private int buttonValue;
 	private String name;
+	
 	public CounterModel() {
 		super();
 		buttonValue = 0;
 	}
 	
+	//Creates counter from a String
 	public CounterModel(String title) {
 		super();
 		buttonValue = 0;
 		name = title;
 	}
 
+	//Creates counter from an int
 	public CounterModel(int button_value) {
 		super();
 		this.buttonValue = button_value;
 	}
 
+	//Creates counter from a int and String
 	public CounterModel(int button_value, String name) {
 		super();
 		this.buttonValue = button_value;
 		this.name = name;
 	}
 
+	//gets timestamp
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
+	
+	//sets timestamp
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
-
+	//Gets buttonvalue
 	public int getButtonValue() {
 		return buttonValue;
 	}
 
+	//sets ButtonValue
 	public void setButtonValue(int buttonValue) {
 		this.buttonValue = buttonValue;
 	}
 
+	//Returns name
 	public String getName() {
 		return name;
 	}
 
+	//Sets name
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	//Returns this model as a Gson serialized text
 	public String serialization() {
 		Gson gson = new Gson();
 		String json = gson.toJson(this);
 		return json;
 	}
 	
+	//Turns a Gson serialized Model text into a CounterModel Object
 	public CounterModel deserialization(String text) {
 		Gson gson = new Gson();
 		CounterModel new_model = gson.fromJson(text, CounterModel.class);
 		return new_model;
 	}
 	
-	//SaveingToFile code adapted from lonely Twitter
+	//SaveingToFile code adapted from lonely Twitter.
+	//Saves the current model (as a Gson string) into a file
 	public void saveToFile(String text, Context ctx){
 		try {
 			FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -92,7 +104,9 @@ public class CounterModel {
 		}
 	}
 	
-	//LoadingFromFile code adapted from lonely Twitter
+	//LoadingFromFile code adapted from lonely Twitter.
+	//Gets the last changed CounterModel (as a serialized Gson string)
+	//then converts and returns it as a Gson Model
 	public CounterModel loadFromFile(Context ctx) {
         ArrayList<CounterModel> counters = new ArrayList<CounterModel>();
         try { 	
@@ -104,7 +118,6 @@ public class CounterModel {
                 while(line != null) {
                 	counters.add(counter);
                 	line = in.readLine();
-                	//Add the counter to the CounterMap
                 	return counter;
                 }       
         } catch (FileNotFoundException e) {

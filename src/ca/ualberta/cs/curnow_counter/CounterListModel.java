@@ -23,28 +23,30 @@ public class CounterListModel {
 	private static ArrayList<CounterModel> counterList;
 	private static final String FILENAME2 = "file2.sav";
 
+	//creates an empty CounterListModel
 	public CounterListModel() {
          super();
          counterList = new ArrayList<CounterModel>();
 	}
 	
+	//Returns the Arraylist
 	public static ArrayList<CounterModel> getCounterList() {
 		return counterList;
 	}
 
+	//Sets the Arraylist
 	public static void setCounterList(ArrayList<CounterModel> counterList) {
 		CounterListModel.counterList = counterList;
 	}
 
+	//Adds in a counter, will scan over the entire list to check if the counter
+	//is all-ready in the list. If it is in the list, it will just overwrite
+	//that counter instead of creating a copy of it.
 	public static void add(CounterModel model){
-		//checks to see if name is in the list, it if is, copy the values over
 		if(model != null) {
 			for (CounterModel counter :counterList) {
-					System.out.println("delete");
-					System.out.println(model.getName().toString());
 				if((model.getName()).toString().equals("DeleteMe")){
 					counterList.remove(counter);
-					System.out.println("Truedelete");
 					return;
 				}
 				if((model.getName()).equals(counter.getName())){
@@ -57,13 +59,13 @@ public class CounterListModel {
 			}
 	}
 	
+	//returns the number of counters
 	public static int getSize(){
 		return counterList.size();
 	}
 	
+	//sorts the ArrayList based upon button value (ascending)
 	public static void sort(){
-		
-		//sorts based on button value
 		Collections.sort(counterList, new Comparator<CounterModel>() {
 			@Override public int compare(CounterModel one, CounterModel two) {
 				return one.getButtonValue() - two.getButtonValue();
@@ -72,6 +74,7 @@ public class CounterListModel {
 		
 	}
 	
+	//Converts ArralyList of Objects to a Gson String
 	public String serialization() {
 		Gson gson = new Gson();
 		List<CounterModel> counters = new ArrayList<CounterModel>();
@@ -82,6 +85,7 @@ public class CounterListModel {
 		return json;
 	}
 	
+	//Converts a Gson CounterListmodelString string to a CounterListModel object
 	public CounterListModel deserialization(String text) {
 		Gson gson = new Gson();
 		Type type = new TypeToken<ArrayList<CounterModel>>(){}.getType();
@@ -93,10 +97,12 @@ public class CounterListModel {
 		return new_array;
 	}
 	
+	//Emptys out all the Counters
 	public static void clearList(){
 		counterList.clear();
 	}
 
+	//Returns an ArrayList of strings of every user-created CounterModel
 	public static ArrayList<String> getNameList(){
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (CounterModel counter :counterList) {
@@ -114,6 +120,7 @@ public class CounterListModel {
 		return nameList;
 	}
 	
+	//Finds a specific CounterModel from a CounterModel's name
 	public static CounterModel getCounterFromName(String name){
 		for (CounterModel counter :counterList) {
 			if(name.equals(counter.getName())){
@@ -123,15 +130,12 @@ public class CounterListModel {
 		return null;
 	}
 	
+	//Saves Gson serialized version of CounterListModel
+	//into a file
 	public void saveListToFile(Context ctx ){
-		//dont save empty list
-		
-		System.out.println("Bye");
 		if (counterList.isEmpty()) {
-			  
 			return;
 		}
-		
 		try {
 			String text = this.serialization();	
 			FileOutputStream fos = ctx.openFileOutput(FILENAME2, Context.MODE_PRIVATE);
@@ -144,7 +148,9 @@ public class CounterListModel {
 		}
 	}
 	
-	//LoadingFromFile code adapted from lonely Twitter
+	//Loads from a file a Gson Serialized CounterListModel
+	//and returns a CounterListObject converted from the
+	//de-serialized string
 	public CounterListModel loadListFromFile(Context ctx) {
         try { 	
                 FileInputStream fis = ctx.openFileInput(FILENAME2);

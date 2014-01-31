@@ -37,19 +37,16 @@ public class CounterActivity extends Activity {
 	
 	//Gets the button value from counter and moves it to view, and updates name
 	private void updateCounter (CounterModel counter) {
+		CurnowCounterMainActivity.counterList.addCounter(counter);
 		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
 		int counterButtonValue = counter.getButtonValue();
 		buttonValue.setText(String.valueOf(counterButtonValue));
-		
 		TextView buttonTitle = (TextView)findViewById(R.id.buttonCounter);
 		buttonTitle.setText(counter.getName());
 	}
 	
 	//called by a button in the activity_couner.xml
 	public void goBack(View view) {
-		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, context);
-		
 		finish();
 	}
 	
@@ -57,6 +54,9 @@ public class CounterActivity extends Activity {
 	public void incCounter(View view){
 		counter.setButtonValue(counter.getButtonValue() + 1);
 		updateCounter(counter);
+		
+		
+		
 		String counter_serial = counter.serialization();
 		counter.saveToFile(counter_serial, context);
 	}
@@ -72,7 +72,6 @@ public class CounterActivity extends Activity {
 			//Creates a new counter (and serializes it) with the message from CreatButton
 			//then passes it through a newly created intent
 			counter.setName(message);	
-			
 			updateCounter(counter);
 			String counter_serial = counter.serialization();
 			counter.saveToFile(counter_serial, context);
@@ -83,16 +82,16 @@ public class CounterActivity extends Activity {
 	public void resetCounter(View view){
 		counter.setButtonValue(0);
 		updateCounter(counter);
-		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, context);
+		String counterSerial = counter.serialization();
+		counter.saveToFile(counterSerial, context);
 	}
 	
 	//called by a button in the activity_couner.xml
-	public void deleteCounter(View view){
+	public void deleteCounter(View view){	
+		CurnowCounterMainActivity.counterList.delete(counter.getName());
 		counter.setName("DeleteMe");
-		String counter_serial = counter.serialization();
-		counter.saveToFile(counter_serial, context);
+		String counterSerial = counter.serialization();
+		counter.saveToFile(counterSerial, context);
 		finish();
 	}
-
 }

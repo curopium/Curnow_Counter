@@ -21,23 +21,31 @@ public class CurnowCounterMainActivity extends Activity {
 	public final static String EXTRA_COUNTER = "ca.ualberta.cs.curnow_counter.MESSAGE";
 	private static final String FILENAME2 = "file2.sav";
 	//private static CounterController counterController = new CounterController();
-	private ListView counterListView; 
-	private static CounterListModel counterList = new CounterListModel();
+	public ListView counterListView; 
+    static CounterListModel counterList = new CounterListModel();
 	//used to call CounterModel functions
 	private CounterModel emptyCounter = new CounterModel();
 	private Context context = CurnowCounterMainActivity.this;
+	private static boolean wasCreated = false;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_curnow__counter);	
 		counterListView = (ListView) findViewById(R.id.counterList);
+		counterList = counterList.loadListFromFile(context);
 		
-		//needs to fill list with at least one element
-		CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );
-		CounterListModel.add(tempCounter);
-		counterList.saveListToFile(context);	
+		if(!wasCreated)
+		{
+			//needs to fill list with at least one element
+			CounterModel tempCounter = new CounterModel(123456789, "DummyCounter" );
+			CounterListModel.addCounter(tempCounter);
+			counterList.saveListToFile(context);	
+			wasCreated = true;
+		}
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -48,16 +56,17 @@ public class CurnowCounterMainActivity extends Activity {
 	//update the counter list
 	protected void onResume() {
 		super.onResume();
+		
 	}
     @Override
     //Loads up the list from memory, adds the most recently changed counter
     //then waits for user to select a counter
     protected void onStart() {
             super.onStart();            
-            counterList = counterList.loadListFromFile(context);
-            CounterListModel.add(emptyCounter.loadFromFile(context));
-            counterList.saveListToFile(context);
+            //System.out.println(counterList.getNameList());
+    		//counterList = counterList.loadListFromFile(context);
             counterList.sort();
+            counterList.saveListToFile(context);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, counterList.getNameList());
             counterListView.setAdapter(adapter);
         	counterListView.setOnItemClickListener(new OnItemClickListener() {    

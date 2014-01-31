@@ -32,6 +32,12 @@ public class CounterListModel {
 	public static ArrayList<CounterModel> getCounterList() {
 		return counterList;
 	}
+	
+	public void delete (String name) {
+		//System.out.println(name);
+		counterList.remove(this.getCounterFromName(name));
+		//System.out.println(this.getNameList());
+	}
 
 	//Sets the Arraylist
 	public static void setCounterList(ArrayList<CounterModel> counterList) {
@@ -41,13 +47,12 @@ public class CounterListModel {
 	//Adds in a counter, will scan over the entire list to check if the counter
 	//is all-ready in the list. If it is in the list, it will just overwrite
 	//that counter instead of creating a copy of it.
-	public static void add(CounterModel model){
-		if(model != null) {
+	public static void addCounter(CounterModel model){
+		if(model.getName().toString().equals("DeleteMe")) {
+			return;
+		}
+		if(model != null ) {
 			for (CounterModel counter :counterList) {
-				if((model.getName()).toString().equals("DeleteMe")){
-					counterList.remove(counter);
-					return;
-				}
 				if((model.getName()).equals(counter.getName())){
 					counter.setButtonValue(model.getButtonValue());
 					counter.setTimestamp(model.getTimestamp());
@@ -91,7 +96,7 @@ public class CounterListModel {
 		List<CounterModel> new_list = gson.fromJson(text, type);
 		CounterListModel new_array = new CounterListModel();
 		for (CounterModel counter :new_list) {
-			CounterListModel.add(counter);
+			CounterListModel.addCounter(counter);
 		}
 		return new_array;
 	}

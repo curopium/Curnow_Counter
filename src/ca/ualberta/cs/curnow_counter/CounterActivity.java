@@ -47,11 +47,14 @@ public class CounterActivity extends Activity {
 		return true;
 	}
 	
-	//Gets the button value from counter and moves it to view
+	//Gets the button value from counter and moves it to view, and updates name
 	private void updateCounter (CounterModel counter) {
 		TextView buttonValue = (TextView)findViewById(R.id.buttonValue);
 		int counterButtonValue = counter.getButtonValue();
 		buttonValue.setText(String.valueOf(counterButtonValue));
+		
+		TextView buttonTitle = (TextView)findViewById(R.id.buttonCounter);
+		buttonTitle.setText(counter.getName());
 	}
 	
 	//called by a button in the activity_couner.xml
@@ -68,6 +71,24 @@ public class CounterActivity extends Activity {
 		updateCounter(counter);
 		String counter_serial = counter.serialization();
 		counter.saveToFile(counter_serial, getApplicationContext());
+	}
+	
+	//called by a button in the activity_couner.xml
+	public void editCounter(View view){
+		
+		//Gets the string from CreateButton EditText
+		EditText buttonTitle = (EditText) findViewById(R.id.editText);
+		String message = buttonTitle.getText().toString();
+		//only change name if string length is > 0
+		if(message.length() > 0) {
+			//Creates a new counter (and serializes it) with the message from CreatButton
+			//then passes it through a newly created intent
+			counter.setName(message);	
+			
+			updateCounter(counter);
+			String counter_serial = counter.serialization();
+			counter.saveToFile(counter_serial, getApplicationContext());
+		}
 	}
 	
 	//called by a button in the activity_couner.xml

@@ -42,8 +42,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/resetButton"
-        android:layout_below="@+id/resetButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:onClick="deleteCounter"
         android:text="Delete" />
 
@@ -52,8 +52,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/deleteButton"
         android:onClick="resetCounter"
         android:text="Reset" />
+
+    <Button
+        android:id="@+id/editButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/backButton"
+        android:onClick="editCounter"
+        android:text="Change name" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editButton"
+        android:ems="10"
+        android:hint="New Counter name" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

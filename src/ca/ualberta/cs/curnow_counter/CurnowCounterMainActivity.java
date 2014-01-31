@@ -102,7 +102,7 @@ public class CurnowCounterMainActivity extends Activity {
 	public void clearCounters(View view){
 		counterList.clearList();
 		try {
-			String text = counterList.getserialization();
+			String text = counterList.serialization();
 			FileOutputStream fos = openFileOutput(FILENAME2, Context.MODE_PRIVATE);
 			fos.write(new String(text).getBytes());
 			fos.close();

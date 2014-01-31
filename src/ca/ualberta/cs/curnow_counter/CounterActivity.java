@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CounterActivity extends Activity {
-	static CounterModel counter = new CounterModel();
+	static private CounterModel counter = new CounterModel();
 	private final String FILENAME = "file.sav";
 	
 	
@@ -55,7 +55,7 @@ public class CounterActivity extends Activity {
 	}
 	
 	//called by a button in the activity_couner.xml
-	public void goback(View view) {
+	public void goBack(View view) {
 		String counter_serial = counter.serialization();
 		counter.saveToFile(counter_serial, getApplicationContext());
 		

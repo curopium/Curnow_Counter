@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Back"
-        android:onClick= "goback" />
+        android:onClick= "goBack" />
 
     <Button
         android:id="@+id/buttonCounter"

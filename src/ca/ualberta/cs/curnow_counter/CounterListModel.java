@@ -60,7 +60,7 @@ public class CounterListModel {
 		return counterList.size();
 	}
 	
-	public String getserialization() {
+	public String serialization() {
 		Gson gson = new Gson();
 		List<CounterModel> counters = new ArrayList<CounterModel>();
 		for (CounterModel counter :counterList) {
@@ -70,7 +70,7 @@ public class CounterListModel {
 		return json;
 	}
 	
-	public CounterListModel getdeserialization(String text) {
+	public CounterListModel deserialization(String text) {
 		Gson gson = new Gson();
 		//http://kodejava.org/how-do-i-convert-collections-into-json/
 		
@@ -90,7 +90,11 @@ public class CounterListModel {
 	public static ArrayList<String> getNameList(){
 		ArrayList<String> nameList = new ArrayList<String>();
 		for (CounterModel counter :counterList) {
-			nameList.add(counter.getName());
+			//Do not print counter to delete
+			if(!(counter.getName()).toString().equals("DeleteMe"))
+			{
+				nameList.add(counter.getName());
+			}
 		}
 		return nameList;
 	}
@@ -106,7 +110,7 @@ public class CounterListModel {
 	
 	public void saveListToFile(Context ctx ){
 		try {
-			String text = this.getserialization();	
+			String text = this.serialization();	
 			FileOutputStream fos = ctx.openFileOutput(FILENAME2, Context.MODE_PRIVATE);
 			fos.write(new String(text).getBytes());
 			fos.close();	
@@ -124,7 +128,7 @@ public class CounterListModel {
                 FileInputStream fis = ctx.openFileInput(FILENAME2);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
                 String line = in.readLine();   
-                return this.getdeserialization(line);    
+                return this.deserialization(line);    
         } catch (FileNotFoundException e) {
                 e.printStackTrace();
         } catch (IOException e) {
